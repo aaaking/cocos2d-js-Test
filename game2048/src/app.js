@@ -79,7 +79,6 @@ var GameLayer = cc.Layer.extend({
         this.createCards();
         //随机生成2个数字
         this.autoCreateCardNumber();
-        this.autoCreateCardNumber();
     },
     createCards: function () {
         var size = cc.winSize;
@@ -97,17 +96,15 @@ var GameLayer = cc.Layer.extend({
 
     },
     autoCreateCardNumber: function () {//生成随机的卡片2/4
-        // while (1) {
-        //     var i = Math.floor(Math.random() * 4);
-        //     var j = Math.floor(Math.random() * 4);
-        //     if (this.cardArr[i][j].getNumber == 0) {
-        //         this.cardArr[i][j].setNumber(Math.floor(Math.random() * 10) < 1 ? 4 : 2);
-        //         break;
-        //     }
-        //     if (!this.shouldCreateCardNumber()) {
-        //         break;
-        //     }
-        // }
+        var times = 0;
+        while (times < 2) {
+            var i = Math.floor(Math.random() * 4);
+            var j = Math.floor(Math.random() * 4);
+            if (this.cardArr[i][j].getNumber() == 0) {
+                this.cardArr[i][j].setNumber(Math.floor(Math.random() * 10) < 1 ? 4 : 2);
+                times++;
+            }
+        }
     },
     shouldCreateCardNumber: function () {
         var should = false;
