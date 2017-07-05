@@ -159,40 +159,54 @@ var GameLayer = cc.Layer.extend({
     onTouchDispose: function (offsetX, offsetY) {
         if (Math.abs(offsetX) > Math.abs(offsetY)) {
             if (offsetX > 5) {
+                if (!this.canDoLeft()) {
+                    return;
+                }
                 this.doLeft();
                 this.checkGameOver();
                 this.setScore(this.score);
-                console.log(offsetX + " left " + offsetY);
             } else if (offsetX < -5) {
+                if (!this.canDoRight()) {
+                    return;
+                }
                 this.doRight();
                 this.checkGameOver();
                 this.setScore(this.score);
-                console.log(offsetX + " right " + offsetY);
             }
         } else {
             if (offsetY > 5) {
+                if (!this.canDoDown()) {
+                    return;
+                }
                 this.doDown();
                 this.checkGameOver();
                 this.setScore(this.score);
-                console.log(offsetX + " down " + offsetY);
             } else if (offsetY < -5) {
+                if (!this.canDoUp()) {
+                    return;
+                }
                 this.doUp();
                 this.checkGameOver();
                 this.setScore(this.score);
-                console.log(offsetX + " up " + offsetY);
             }
         }
     },
-    //向上
+    //向上----------------------------------------------------------------------------------------
     canDoUp: function () {
         var can = false;
         for (var x = 0; x < 4; ++x) {
-            for (var y = 3; y >= 0; --y) {
-                for (var y1 = y - 1; y1 >= 0; --y1) {
-
+            for (var y = 3; y >= 1; --y) {
+                if (this.cardArr[x][y].getNumber() == 0 &&  this.cardArr[x][y-1].getNumber() > 0) {
+                    can = true;
+                    return can;
+                }
+                if (this.cardArr[x][y].getNumber() > 0 && this.cardArr[x][y].getNumber() == this.cardArr[x][y - 1].getNumber()) {
+                    can = true;
+                    return can;
                 }
             }
         }
+        return can;
     },
     doUp: function () {
         var isdo = false;
@@ -218,7 +232,23 @@ var GameLayer = cc.Layer.extend({
         }
         return isdo;
     },
-    //向下
+    //向下----------------------------------------------------------------------------------------
+    canDoDown: function () {
+        var can = false;
+        for (var x = 0; x < 4; ++x) {
+            for (var y = 0; y < 3; ++y) {
+                if (this.cardArr[x][y].getNumber() == 0 &&  this.cardArr[x][y+1].getNumber() > 0) {
+                    can = true;
+                    return can;
+                }
+                if (this.cardArr[x][y].getNumber() > 0 && this.cardArr[x][y].getNumber() == this.cardArr[x][y+1].getNumber()) {
+                    can = true;
+                    return can;
+                }
+            }
+        }
+        return can;
+    },
     doDown: function () {
         var isdo = false;
         for (var x = 0; x < 4; ++x) {
@@ -243,7 +273,23 @@ var GameLayer = cc.Layer.extend({
         }
         return isdo;
     },
-    //向左
+    //向左----------------------------------------------------------------------------------------
+    canDoLeft: function () {
+        var can = false;
+        for (var y = 0; y < 4; ++y) {
+            for (var x = 0; x < 3; ++x) {
+                if (this.cardArr[x][y].getNumber() == 0 &&  this.cardArr[x + 1][y].getNumber() > 0) {
+                    can = true;
+                    return can;
+                }
+                if (this.cardArr[x][y].getNumber() > 0 && this.cardArr[x][y].getNumber() == this.cardArr[x + 1][y].getNumber()) {
+                    can = true;
+                    return can;
+                }
+            }
+        }
+        return can;
+    },
     doLeft: function () {
         var isdo = false;
         for (var y = 0; y < 4; ++y) {
@@ -268,7 +314,23 @@ var GameLayer = cc.Layer.extend({
         }
         return isdo;
     },
-    //向右
+    //向右----------------------------------------------------------------------------------------
+    canDoRight: function () {
+        var can = false;
+        for (var y = 0; y < 4; ++y) {
+            for (var x = 3; x >= 1; --x) {
+                if (this.cardArr[x][y].getNumber() == 0 &&  this.cardArr[x - 1][y].getNumber() > 0) {
+                    can = true;
+                    return can;
+                }
+                if (this.cardArr[x][y].getNumber() > 0 && this.cardArr[x][y].getNumber() == this.cardArr[x - 1][y].getNumber()) {
+                    can = true;
+                    return can;
+                }
+            }
+        }
+        return can;
+    },
     doRight: function () {
         var isdo = false;
         for (var y = 0; y < 4; ++y) {
