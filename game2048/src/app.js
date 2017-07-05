@@ -47,7 +47,7 @@ var GameLayer = cc.Layer.extend({
         this._super();
         // this.ignoreAnchorPointForPosition(true);
         this.initContent();
-        // this.loadListener();
+        this.loadListener();
         return true;
     },
     initContent: function () {
@@ -78,7 +78,8 @@ var GameLayer = cc.Layer.extend({
         // 初始化卡片数组
         this.createCards();
         //随机生成2个数字
-        this.autoCreateCardNumber();
+        this.autoCreateCardNumber(2);
+        this.loadListener();
     },
     createCards: function () {
         var size = cc.winSize;
@@ -95,9 +96,9 @@ var GameLayer = cc.Layer.extend({
         }
 
     },
-    autoCreateCardNumber: function () {//生成随机的卡片2/4
+    autoCreateCardNumber: function (timesP) {//生成随机的卡片2/4
         var times = 0;
-        while (times < 2) {
+        while (times < timesP) {
             var i = Math.floor(Math.random() * 4);
             var j = Math.floor(Math.random() * 4);
             if (this.cardArr[i][j].getNumber() == 0) {
@@ -106,10 +107,10 @@ var GameLayer = cc.Layer.extend({
             }
         }
     },
-    shouldCreateCardNumber: function () {
+    shouldCreateCardNumber: function () {// 判断是否需要自动生成新的卡片
         var should = false;
-        for (var i = 0; i < 4; i++) {
-            for (var j = 0; j < 4; j++) {
+        for (var i = 0; i < 4; ++i) {
+            for (var j = 0; j < 4; ++j) {
                 if (this.cardArr[i][j].getNumber() == 0) {
                     should = true;
                     break;
@@ -117,6 +118,228 @@ var GameLayer = cc.Layer.extend({
             }
         }
         return should;
+    },
+    loadListener: function () {
+        var listener = cc.EventListener.create({
+            event: cc.EventListener.TOUCH_ONE_BY_ONE,
+            target: this,
+            swallowTouches: true,
+            onTouchBegan: this.onTouchBegan,
+            onTouchMoved: this.onTouchMoved,
+            onTouchEnded: this.onTouchEnded
+        });
+        cc.eventManager.addListener(listener, this);
+    },
+    onTouchBegan: function (touch, event) {
+        var self = this.target;
+        var touchPoint = touch.getLocation();
+        self.firstX = touchPoint.x;
+        self.firstY = touchPoint.y;
+        var locationInNode = self.convertToNodeSpace(touchPoint);
+        var size = self.getContentSize();
+        var rect = cc.rect(0, 0, size.width, size.height);
+        if (!cc.rectContainsPoint(rect, locationInNode)) {
+            return false;
+        }
+        //触摸处理
+        // self.onTouchDispose();
+        return true;
+    },
+    onTouchMoved: function (touch, event) {
+        var self = this.target;
+        var pos = touch.getLocation();
+    },
+    onTouchEnded: function (touch, event) {
+        var self = this.target;
+        var touchPoint = touch.getLocation();
+        var offsetX = self.firstX - touchPoint.x;
+        var offsetY = self.firstY - touchPoint.y;
+        self.onTouchDispose(offsetX, offsetY);
+    },
+    onTouchDispose: function (offsetX, offsetY) {
+        if (Math.abs(offsetX) > Math.abs(offsetY)) {
+            if (offsetX > 5) {
+                this.doLeft();
+                this.checkGameOver();
+                this.setScore(this.score);
+                console.log(offsetX + " left " + offsetY);
+            } else if (offsetX < -5) {
+                this.doRight();
+                this.checkGameOver();
+                this.setScore(this.score);
+                console.log(offsetX + " right " + offsetY);
+            }
+        } else {
+            if (offsetY > 5) {
+                this.doDown();
+                this.checkGameOver();
+                this.setScore(this.score);
+                console.log(offsetX + " down " + offsetY);
+            } else if (offsetY < -5) {
+                this.doUp();
+                this.checkGameOver();
+                this.setScore(this.score);
+                console.log(offsetX + " up " + offsetY);
+            }
+        }
+    },
+    //向上
+    doUp: function () {
+        var isdo = false;
+        for (var x = 0; x < 4; ++x) {
+            for (var y = 3; y >= 0; --y) {
+                for (var y1 = y - 1; y1 >= 0; --y1) {
+                    if (this.cardArr[x][y1].getNumber() > 0) {
+                        if (this.cardArr[x][y].getNumber() <= 0) {
+                            this.cardArr[x][y].setNumber(this.cardArr[x][y1].getNumber());
+                            this.cardArr[x][y1].setNumber(0);
+                            ++y;
+                            isdo = true;
+                        } else if (this.cardArr[x][y].getNumber() == this.cardArr[x][y1].getNumber()) {
+                            this.cardArr[x][y].setNumber(this.cardArr[x][y].getNumber() * 2);
+                            this.cardArr[x][y1].setNumber(0);
+                            this.score += this.cardArr[x][y].getNumber();  //增加分数
+                            isdo = true;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return isdo;
+    },
+    //向下
+    doDown: function () {
+        var isdo = false;
+        for (var x = 0; x < 4; ++x) {
+            for (var y = 0; y < 4; ++y) {
+                for (var y1 = y + 1; y1 < 4; ++y1) {
+                    if (this.cardArr[x][y1].getNumber() > 0) {
+                        if (this.cardArr[x][y].getNumber() <= 0) {
+                            this.cardArr[x][y].setNumber(this.cardArr[x][y1].getNumber());
+                            this.cardArr[x][y1].setNumber(0);
+                            --y;
+                            isdo = true;
+                        } else if (this.cardArr[x][y].getNumber() == this.cardArr[x][y1].getNumber()) {
+                            this.cardArr[x][y].setNumber(this.cardArr[x][y].getNumber() * 2);
+                            this.cardArr[x][y1].setNumber(0);
+                            this.score += this.cardArr[x][y].getNumber();  //增加分数
+                            isdo = true;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return isdo;
+    },
+    //向左
+    doLeft: function () {
+        var isdo = false;
+        for (var y = 0; y < 4; ++y) {
+            for (var x = 0; x < 4; ++x) {
+                for (var x1 = x + 1; x1 < 4; ++x1) {
+                    if (this.cardArr[x1][y].getNumber() > 0) {
+                        if (this.cardArr[x][y].getNumber() <= 0) {
+                            this.cardArr[x][y].setNumber(this.cardArr[x1][y].getNumber());
+                            this.cardArr[x1][y].setNumber(0);
+                            --x;
+                            isdo = true;
+                        } else if (this.cardArr[x][y].getNumber() == this.cardArr[x1][y].getNumber()) {
+                            this.cardArr[x][y].setNumber(this.cardArr[x][y].getNumber() * 2);
+                            this.cardArr[x1][y].setNumber(0);
+                            this.score += this.cardArr[x][y].getNumber();  //增加分数
+                            isdo = true;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return isdo;
+    },
+    //向右
+    doRight: function () {
+        var isdo = false;
+        for (var y = 0; y < 4; ++y) {
+            for (var x = 3; x >= 0; --x) {
+                for (var x1 = x - 1; x1 >= 0; --x1) {
+                    if (this.cardArr[x1][y].getNumber() > 0) {
+                        if (this.cardArr[x][y].getNumber() <= 0) {
+                            this.cardArr[x][y].setNumber(this.cardArr[x1][y].getNumber());
+                            this.cardArr[x1][y].setNumber(0);
+                            ++x;
+                            isdo = true;
+                        } else if (this.cardArr[x][y].getNumber() == this.cardArr[x1][y].getNumber()) {
+                            this.cardArr[x][y].setNumber(this.cardArr[x][y].getNumber() * 2);
+                            this.cardArr[x1][y].setNumber(0);
+                            this.score += this.cardArr[x][y].getNumber();  //增加分数
+                            isdo = true;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return isdo;
+    },
+    setScore: function (s) {
+        this.scoreLabel.setString(s);
+    },
+    checkGameOver: function () {
+        var size = cc.winSize;
+        var isGameOver = true;
+        for (var y = 0; y < 4; ++y) {
+            for (var x = 0; x < 4; ++x) {
+                if (this.cardArr[x][y].getNumber() == 0 ||
+                    (x > 0 && (this.cardArr[x][y].getNumber() == this.cardArr[x - 1][y].getNumber())) ||
+                    (x < 3 && (this.cardArr[x][y].getNumber() == this.cardArr[x + 1][y].getNumber())) ||
+                    (y > 0 && (this.cardArr[x][y].getNumber() == this.cardArr[x][y - 1].getNumber())) ||
+                    (y < 3 && (this.cardArr[x][y].getNumber() == this.cardArr[x][y + 1].getNumber()))) {
+                    isGameOver = false;
+                }
+            }
+        }
+        if (isGameOver) {
+            this.gameOverLayer = cc.LayerColor(new cc.color(0, 0, 0, 100), null, null);
+            var labelGameOver = new cc.LabelTTF("GameOver!!!", "Arial", 60);
+            labelGameOver.setPosition(size.width / 2, size.height / 2);
+            this.gameOverLayer.addChild(labelGameOver);
+            this.getParent().addChild(this.gameOverLayer, 1);
+            this.scheduleOnce(this.removeGameOverLayer, 2);
+        } else {
+            if (this.shouldCreateCardNumber()) {
+                this.autoCreateCardNumber(1);//随机生成一个卡片
+            }
+        }
+        if (this.isWin()) {
+            this.gameWinLayer = cc.LayerColor(new cc.color(0, 0, 0, 100), null, null);
+            var labelGameWin = new cc.LabelTTF("You win!!!", "Arial", 60);
+            labelGameWin.setPosition(size.width, size.height);
+            this.gameWinLayer.addChild(labelGameWin);
+            this.getParent().addChild(this.gameWinLayer, 1);
+            this.scheduleOnce(this.removeGameWinLayer, 4);
+        }
+    },
+    isWin: function () {
+        var Win = false;
+        for (var i = 0; i < 4; ++i) {
+            for (var j = 0; j < 4; ++j) {
+                if (this.cardArr[i][j].getNumber() >= 2048) {
+                    Win = true;
+                    break;
+                }
+            }
+        }
+        return Win;
+    },
+    removeGameOverLayer: function () {
+        this.gameOverLayer.removeFromParent();
+        cc.director.replaceScene(cc.TransitionFade(1, new HelloWorldScene()));
+    },
+    removeGameWinLayer: function () {
+        this.gameWinLayer.removeFromParent();
+        cc.director.replaceScene(cc.TransitionFade(1, new HelloWorldScene()));
     }
 });
 
