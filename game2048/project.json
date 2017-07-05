@@ -13,6 +13,8 @@
 
     "jsList" : [
         "src/resource.js",
+        "src/display.js",
+        "src/CardSprite.js",
         "src/app.js"
     ]
 }

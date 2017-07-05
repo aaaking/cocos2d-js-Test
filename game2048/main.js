@@ -58,26 +58,46 @@ cc.game.onStart = function(){
         document.body.removeChild(document.getElementById("cocosLoading"));
 
     // Pass true to enable retina display, on Android disabled by default to improve performance
-    cc.view.enableRetina(sys.os === sys.OS_IOS ? true : false);
-
-    // Disable auto full screen on baidu and wechat, you might also want to eliminate sys.BROWSER_TYPE_MOBILE_QQ
-    if (sys.isMobile && 
-        sys.browserType !== sys.BROWSER_TYPE_BAIDU &&
-        sys.browserType !== sys.BROWSER_TYPE_WECHAT) {
-        cc.view.enableAutoFullScreen(true);
-    }
-
+    cc.view.enableRetina(cc.sys.os === cc.sys.OS_IOS ? true : false);
+    cc.view.enableRetina(true);
     // Adjust viewport meta
     cc.view.adjustViewPort(true);
-
-    // Uncomment the following line to set a fixed orientation for your game
-    // cc.view.setOrientation(cc.ORIENTATION_PORTRAIT);
-
     // Setup the resolution policy and design resolution size
-    cc.view.setDesignResolutionSize(960, 640, cc.ResolutionPolicy.SHOW_ALL);
+    var screenSize = cc.view.getFrameSize();
+    w = screenSize.width;
+    h = screenSize.height;
+    CONFIG_SCREEN_WIDTH =720;
+    CONFIG_SCREEN_HEIGHT = 1280;
+    scaleY =h / CONFIG_SCREEN_HEIGHT;
+    CONFIG_SCREEN_WIDTH = screenSize.width / scaleY;
+    cc.view.setDesignResolutionSize(CONFIG_SCREEN_WIDTH, 1280, cc.ResolutionPolicy.NO_BORDER);
 
+    // cc.view.setDesignResolutionSize(720, 1280, cc.ResolutionPolicy.SHOW_ALL);
+    // Instead of set design resolution, you can also set the real pixel resolution size
+    // Uncomment the following line and delete the previous line.
+    // cc.view.setRealPixelResolution(960, 640, cc.ResolutionPolicy.SHOW_ALL);
     // The game will be resized when browser size change
     cc.view.resizeWithBrowserSize(true);
+    //load resources
+
+    var winSize = cc.winSize;
+
+    display.size               = {width : winSize.width, height : winSize.height};
+    display.sizeInPixels = {width : screenSize.width, height : screenSize.height};
+    display.width              = display.size.width;
+    display.height             = display.size.height;
+    display.cx                 = display.width / 2;
+    display.cy                 = display.height / 2;
+    display.c_left             = -display.width / 2;
+    display.c_right            = display.width / 2;
+    display.c_top              = display.height / 2;
+    display.c_bottom           = -display.height / 2;
+    display.left               = 0;
+    display.right              = display.width;
+    display.top                = display.height;
+    display.bottom             = 0;
+    display.widthInPixels      = display.sizeInPixels.width;
+    display.heightInPixels     = display.sizeInPixels.height;
 
     //load resources
     cc.LoaderScene.preload(g_resources, function () {
