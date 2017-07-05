@@ -184,6 +184,16 @@ var GameLayer = cc.Layer.extend({
         }
     },
     //向上
+    canDoUp: function () {
+        var can = false;
+        for (var x = 0; x < 4; ++x) {
+            for (var y = 3; y >= 0; --y) {
+                for (var y1 = y - 1; y1 >= 0; --y1) {
+
+                }
+            }
+        }
+    },
     doUp: function () {
         var isdo = false;
         for (var x = 0; x < 4; ++x) {
