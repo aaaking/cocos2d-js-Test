@@ -13,6 +13,7 @@
 
     "jsList" : [
         "src/resource.js",
+        "src/planeLayer.js",
         "src/app.js"
     ]
 }
