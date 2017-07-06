@@ -6,10 +6,10 @@ var HelloWorldScene = cc.Scene.extend({
     }
 });
 
-gameWidth = 100;
-gameHeight = 200;
-gameMarginX = 200;
-gameMarginY = 200;
+var gameWidth = 100;
+var gameHeight = 200;
+var gameMarginX = 200;
+var gameMarginY = 200;
 
 var GameLayer = cc.Layer.extend({
     background1:null,
