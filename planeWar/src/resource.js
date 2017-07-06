@@ -15,12 +15,14 @@ var EnemyCfg = {
     enemyA: function () {
         return {
             life: 1,
+            hurt: 1,
             score: 1
         }
     },
     enemyB: function () {
         return {
             life: 3,
+            hurt: 3,
             score: 3
         }
     }

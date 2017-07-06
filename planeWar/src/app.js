@@ -94,6 +94,64 @@ var GameLayer = cc.Layer.extend({
         this.background1.setPositionY(this.bgPosY);
         this.background2.setPositionY(this.bgPosY + gameHeight - 2);
     },
+    update: function () {
+        var bullets = this.bulletLayer.allBullets;
+        var enemyAs = this.enemyLayer.allEnemyA;
+        var enemyBs = this.enemyLayer.allEnemyB;
+        var bulletToDelete = [], enemyAToDelete = [], enemyBToDelete = [];
+        for (var i = 0; i < bullets.length; i++) {
+            for (var j = 0; j < enemyAs.length; j++) {
+                if (cc.rectIntersectsRect(bullets[i].getBoundingBox(), enemyAs[j].getBoundingBox())) {
+                    if (--enemyAs[j].attr.life <= 0) {
+                        enemyAToDelete.push(enemyAs[j]);
+                        this.score += enemyAs[j].attr.score;
+                    }
+                    bulletToDelete.push(bullets[i]);
+                }
+            }
+            for (var j = 0; j < enemyBs.length; j++) {
+                if (cc.rectIntersectsRect(bullets[i].getBoundingBox(), enemyBs[j].getBoundingBox())) {
+                    if (--enemyBs[j].attr.life <= 0) {
+                        enemyBToDelete.push(enemyBs[j]);
+                        this.score += enemyBs[j].attr.score;
+                    }
+                    bulletToDelete.push(bullets[i]);
+                }
+            }
+        }
+        if (this.planeLayer.isAlive) {
+            for (var j = 0; j < enemyAs.length; j++) {
+                if (cc.rectIntersectsRect(this.planeLayer.getChildByTag(AIRPLANE).getBoundingBox(), enemyAs[j].getBoundingBox())) {
+                    if ((this.planeLayer.getChildByTag(AIRPLANE).attr.life -= enemyAs[j].attr.hurt) <= 0) {
+                        this.bulletLayer.stopShoot();
+                        //this.enemyLayer.clearAllEnemy();
+                        this.planeLayer.blowUp();
+                    }
+                    enemyAToDelete.push(enemyAs[j]);
+                }
+            }
+            for (var j = 0; j < enemyBs.length; j++) {
+                if (cc.rectIntersectsRect(this.planeLayer.getChildByTag(AIRPLANE).getBoundingBox(), enemyBs[j].getBoundingBox())) {
+                    if ((this.planeLayer.getChildByTag(AIRPLANE).attr.life -= enemyBs[j].attr.hurt) <= 0) {
+                        this.bulletLayer.stopShoot();
+                        //this.enemyLayer.clearAllEnemy();
+                        this.planeLayer.blowUp();
+                        enemyBToDelete.push(enemyBs[j]);
+                    }
+                }
+            }
+        }
+        for (var i = 0; i < enemyAToDelete.length; i++) {
+            this.enemyLayer.enemyABlowUp(enemyAToDelete[i]);
+        }
+        for (var i = 0; i < enemyBToDelete.length; i++) {
+            this.enemyLayer.enemyBBlowUp(enemyBToDelete[i]);
+        }
+        for (var i = 0; i < bulletToDelete.length; i++) {
+            this.bulletLayer.removeBullet(bulletToDelete[i]);
+        }
+        this.controlLayer.updateScore(this.score);
+    },
     loadListener: function () {
         var listener = cc.EventListener.create({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
