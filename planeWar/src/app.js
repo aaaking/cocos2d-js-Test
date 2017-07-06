@@ -73,6 +73,10 @@ var GameLayer = cc.Layer.extend({
         //敌机
         this.enemyLayer = new EnemyLayer();
         this.addChild(this.enemyLayer);
+        //控制层
+        this.controlLayer = new ControlLayer();
+        this.controlLayer.setPositionX(gameMarginX);
+        this.addChild(this.controlLayer);
     }
 });
 

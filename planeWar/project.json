@@ -17,6 +17,7 @@
         "src/bulletLayer.js",
         "src/enemyLayer.js",
         "src/utilFuncs.js",
+        "src/controlLayer.js",
         "src/app.js"
     ]
 }
