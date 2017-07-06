@@ -6,6 +6,11 @@ var HelloWorldScene = cc.Scene.extend({
     }
 });
 
+gameWidth = 100;
+gameHeight = 200;
+gameMarginX = 200;
+gameMarginY = 200;
+
 var GameLayer = cc.Layer.extend({
     background1:null,
     background2:null,
@@ -35,8 +40,16 @@ var GameLayer = cc.Layer.extend({
         var scaleY_1 = size.height / this.background1.getContentSize().height;
         if (scaleX_1 > scaleY_1) {
             this.background1.setScale(scaleY_1);
+            gameWidth = this.background1.getContentSize().width * scaleY_1;
+            gameHeight = this.background1.getContentSize().height * scaleY_1;
+            gameMarginX = (size.width - gameWidth) / 2;
+            gameMarginY = 0;
         } else {
             this.background1.setScale(scaleX_1);
+            gameWidth = this.background1.getContentSize().width * scaleX_1;
+            gameHeight = this.background1.getContentSize().height * scaleX_1;
+            gameMarginX = 0;
+            gameMarginY = (size.height - gameHeight) / 2;
         }
         this.addChild(this.background1);
         //2
@@ -57,6 +70,9 @@ var GameLayer = cc.Layer.extend({
         this.bulletLayer = new BulletLayer(this.planeLayer.getChildByTag(AIRPLANE));
         this.bulletLayer.startShoot();
         this.addChild(this.bulletLayer);
+        //敌机
+        this.enemyLayer = new EnemyLayer();
+        this.addChild(this.enemyLayer);
     }
 });
 
