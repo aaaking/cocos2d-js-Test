@@ -28,16 +28,28 @@ var GameLayer = cc.Layer.extend({
         // this.setKeyboardEnabled(true);//We have delete these three functions from layer in v3.0.
         var size = cc.winSize;
         cc.spriteFrameCache.addSpriteFrames(res.s_ShootBackgroundList, res.s_ShootBackground);
+        //1
         this.background1 = cc.Sprite.create("#background.png");
-        this.background1.setAnchorPoint(0, 0);
-        this.background1.setScaleX(size.width / this.background1.getContentSize().width);
-        this.background1.setScaleY(size.height / this.background1.getContentSize().height);
+        this.background1.setPosition(size.width / 2, size.height / 2);
+        var scaleX_1 = size.width / this.background1.getContentSize().width;
+        var scaleY_1 = size.height / this.background1.getContentSize().height;
+        if (scaleX_1 > scaleY_1) {
+            this.background1.setScale(scaleY_1);
+        } else {
+            this.background1.setScale(scaleX_1);
+        }
         this.addChild(this.background1);
+        //2
         this.background2 = cc.Sprite.create("#background.png");
-        this.background2.setAnchorPoint(0, 0);
-        this.background2.setScaleX(size.width / this.background2.getContentSize().width);
-        this.background2.setScaleY(size.height / this.background2.getContentSize().height);
-        this.addChild(this.background1);
+        this.background2.setPosition(size.width / 2, size.height / 2);
+        var scaleX_2 = size.width / this.background2.getContentSize().width;
+        var scaleY_2 = size.height / this.background2.getContentSize().height;
+        if (scaleX_2 > scaleY_2) {
+            this.background2.setScale(scaleY_2);
+        } else {
+            this.background2.setScale(scaleX_2);
+        }
+        this.addChild(this.background2);
         //飞机
         this.planeLayer = new PlaneLayer();
         this.addChild(this.planeLayer);
