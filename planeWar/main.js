@@ -61,11 +61,12 @@ cc.game.onStart = function(){
     cc.view.enableRetina(sys.os === sys.OS_IOS ? true : false);
 
     // Disable auto full screen on baidu and wechat, you might also want to eliminate sys.BROWSER_TYPE_MOBILE_QQ
-    if (sys.isMobile && 
-        sys.browserType !== sys.BROWSER_TYPE_BAIDU &&
-        sys.browserType !== sys.BROWSER_TYPE_WECHAT) {
-        cc.view.enableAutoFullScreen(true);
-    }
+    // if (sys.isMobile &&
+    //     sys.browserType !== sys.BROWSER_TYPE_BAIDU &&
+    //     sys.browserType !== sys.BROWSER_TYPE_WECHAT) {
+    //     cc.view.enableAutoFullScreen(true);
+    // }
+    cc.view.enableAutoFullScreen(false);
 
     // Adjust viewport meta
     cc.view.adjustViewPort(true);
