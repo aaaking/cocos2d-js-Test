@@ -25,8 +25,11 @@ var GameLayer = cc.Layer.extend({
         // this.setMouseEnabled(true);
         // this.setKeyboardEnabled(true);//We have delete these three functions from layer in v3.0.
         var size = cc.winSize;
+
+        var deleteColor = new cc.LayerColor(cc.color(255, 255, 0, 100), size.width, size.height);
         this.planeLayer = new PlaneLayer();
-        this.addChild(this.planeLayer);
+        deleteColor.addChild(this.planeLayer);
+        this.addChild(deleteColor);
     }
 });
 
