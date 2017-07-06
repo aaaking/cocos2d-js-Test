@@ -14,10 +14,12 @@ var PlaneLayer = cc.Layer.extend({
     },
 
     init: function () {
-        var deletePlane = new cc.LabelTTF("Plane", "Arial", 60);
-        deletePlane.fillStyle = cc.color.RED;
-        deletePlane.setPosition(200, 200);
-        this.addChild(deletePlane);
+        var size = cc.director.getWinSize();
+        cc.spriteFrameCache.addSpriteFrames("res/shoot.plist", "res/shoot.png");
+        var plane = cc.Sprite.create("#hero1.png");
+        plane.setPosition(size.width / 2, plane.getContentSize().height / 2);
+        plane.attr = PlanCfg.newPlane();
+        this.addChild(plane, 0, AIRPLANE);
     },
     blowUp: function () {
         this.isAlive = false;
