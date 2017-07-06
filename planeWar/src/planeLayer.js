@@ -15,7 +15,7 @@ var PlaneLayer = cc.Layer.extend({
 
     init: function () {
         var size = cc.director.getWinSize();
-        cc.spriteFrameCache.addSpriteFrames("res/shoot.plist", "res/shoot.png");
+        cc.spriteFrameCache.addSpriteFrames(res.s_ShootList, res.s_shoot);
         var plane = cc.Sprite.create("#hero1.png");
         plane.setPosition(size.width / 2, plane.getContentSize().height / 2);
         plane.attr = PlanCfg.newPlane();
