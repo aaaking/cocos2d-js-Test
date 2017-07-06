@@ -12,14 +12,13 @@ var gameMarginX = 200;
 var gameMarginY = 200;
 
 var GameLayer = cc.Layer.extend({
-    background1:null,
-    background2:null,
+    background1: null,
+    background2: null,
     planeLayer: null,
     bulletLayer: null,
     enemyLayer: null,
     controlLayer: null,
     bgPosY: 0,
-    bgHeight: 0,
     score: 0,
     ctor: function () {
         this._super();
@@ -32,6 +31,7 @@ var GameLayer = cc.Layer.extend({
         // this.setMouseEnabled(true);
         // this.setKeyboardEnabled(true);//We have delete these three functions from layer in v3.0.
         var size = cc.winSize;
+        this.bgPosY = size.height / 2;
         cc.spriteFrameCache.addSpriteFrames(res.s_ShootBackgroundList, res.s_ShootBackground);
         //1
         this.background1 = cc.Sprite.create("#background.png");
@@ -77,6 +77,21 @@ var GameLayer = cc.Layer.extend({
         this.controlLayer = new ControlLayer();
         this.controlLayer.setPositionX(gameMarginX);
         this.addChild(this.controlLayer);
+        //循环移动背景
+        this.schedule(function () {
+            this.bgPosY -= 2;
+            if (this.background1.getPositionY() <= (0 - gameHeight) / 2) {
+                this.bgPosY = size.height / 2;
+            }
+            this.updateBgPosition();
+        }, 0.02);
+
+        this.scheduleUpdate();
+    },
+
+    updateBgPosition: function () {
+        this.background1.setPositionY(this.bgPosY);
+        this.background2.setPositionY(this.bgPosY + gameHeight - 2);
     }
 });
 
