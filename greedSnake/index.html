@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <title>Cocos2d-html5 Hello World test</title>
-    <link rel="icon" type="image/GIF" href="res/favicon.ico"/>
 
     <meta name="viewport"
           content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
@@ -20,6 +19,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="msapplication-tap-highlight" content="no">
 
+
+    <meta name="screen-orientation" content="portrait"/>
     <!-- force full screen on some browser -->
     <meta name="full-screen" content="yes"/>
     <meta name="x5-fullscreen" content="true"/>
@@ -88,9 +89,33 @@
     </style>
 </head>
 <body>
-<script src="res/loading.js"></script>
-<canvas id="gameCanvas" width="480" height="720"></canvas>
+    <canvas id="gameCanvas" width="800" height="450"></canvas>
+    <script type="text/javascript" src="../cocos2d-js-v3.13.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            cc.game.onStart = function () {
+                //load resources
+                cc.LoaderScene.preload([], function () {
+                    var MyScene = cc.Scene.extend({
+                        onEnter: function () {
+                            this._super();
+                            var size = cc.director.getWinSize();
+                            console.log(size.width + "  " + size.height);
+                            var sprite = cc.LayerColor.create(cc.color.GREEN, size.width, size.height);
+                            sprite.setPosition(0, 0);
+                            sprite.setScale(0.8);
+                            this.addChild(sprite, 0);
 
-<script cocos src="game.min.js"></script>
+                            var label = cc.LabelTTF.create("Hello World", "Arial", 40);
+                            label.setPosition(size.width / 2, size.height / 2);
+                            this.addChild(label, 1);
+                        }
+                    });
+                    cc.director.runScene(new MyScene());
+                }, this);
+            };
+            cc.game.run("gameCanvas");
+        };
+    </script>
 </body>
 </html>
