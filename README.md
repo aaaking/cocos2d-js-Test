@@ -1,4 +1,4 @@
-## 2048
+## game2048
 
 点击[https://aaaking.github.io/cocosjsTest/game2048/index.html](https://aaaking.github.io/cocosjsTest/game2048/index.html)玩
 
@@ -6,7 +6,7 @@
 
 参考[http://www.jianshu.com/p/173e4c9b3b81](http://www.jianshu.com/p/173e4c9b3b81)和[http://www.jianshu.com/p/6f28e528e550](http://www.jianshu.com/p/6f28e528e550)，并做了一些改进
 
-## 微信飞机大战
+## planeWar微信飞机大战
 
 点击[https://aaaking.github.io/cocos2d-js-Test/planeWar/index.html](https://aaaking.github.io/cocos2d-js-Test/planeWar/index.html)玩
 
