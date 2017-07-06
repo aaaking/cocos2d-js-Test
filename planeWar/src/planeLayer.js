@@ -45,7 +45,7 @@ var PlaneLayer = cc.Layer.extend({
         this.getChildByTag(AIRPLANE).runAction(actSeq);
     },
     removePlane: function () {
-        this.removeChildByTag(AIRPLANE)
+        this.removeChildByTag(AIRPLANE);
         var gameOverScene = new GameOverScene();
         gameOverScene.init();
         var hiScore = sys.localStorage["highScore"] || 0;
