@@ -5,6 +5,7 @@ var ControlLayer = cc.Layer.extend({
 
     pauseItem: null,
     scoreItem: null,
+    lifeNum: null,
 
     ctor: function () {
         this._super();
@@ -26,6 +27,12 @@ var ControlLayer = cc.Layer.extend({
         this.scoreItem.setAnchorPoint(cc.p(0, 0.5));
         this.scoreItem.setPosition(cc.p(this.pauseItem.getPositionX() + norPause.getContentSize().width / 2 + 10, this.pauseItem.getPositionY()));
         this.addChild(this.scoreItem);
+
+        this.lifeNum = cc.LabelBMFont.create(PlanCfg.newPlane().life, res.s_font);
+        this.lifeNum.setColor(cc.color(143, 146, 147));
+        this.lifeNum.setAnchorPoint(cc.p(0.5, 0.5));
+        this.addChild(this.lifeNum);
+
 
 //        if (!sys.localStorage["isHaveSaveData"]) {
 //            sys.localStorage.setItem("isHaveSaveData",true);
@@ -56,7 +63,13 @@ var ControlLayer = cc.Layer.extend({
     updateScore: function (score) {
         this.scoreItem.setString(score);
     },
-
+    updateLife: function (life) {
+        if (life < 0) {
+            life = 0;
+        }
+        this.lifeNum.setString(life);
+        this.lifeNum.setPosition(cc.p(gameWidth - this.lifeNum.getContentSize().width / 2 - 10, this.pauseItem.getPositionY()));
+    },
     EOF: function () {
     }
 });

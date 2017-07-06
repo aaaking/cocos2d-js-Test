@@ -154,6 +154,9 @@ var GameLayer = cc.Layer.extend({
             this.bulletLayer.removeBullet(bulletToDelete[i]);
         }
         this.controlLayer.updateScore(this.score);
+        if (this.planeLayer && this.planeLayer.getChildByTag(AIRPLANE) && this.planeLayer.getChildByTag(AIRPLANE).attr) {
+            this.controlLayer.updateLife(this.planeLayer.getChildByTag(AIRPLANE).attr.life);
+        }
     },
     loadListener: function () {
         var listener = cc.EventListener.create({
