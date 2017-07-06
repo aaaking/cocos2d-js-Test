@@ -28,9 +28,9 @@ var GameOverLayer = cc.Layer.extend({
     init: function (score, hiScore) {
         this._super();
         var winSize = cc.director.getWinSize();
-
         var backgroud = cc.Sprite.create("#gameover.png");
         backgroud.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+        backgroud.setScale(gameScale);
         this.addChild(backgroud);
 
         var norBack = cc.Sprite.create("#btn_finish.png");
@@ -38,7 +38,7 @@ var GameOverLayer = cc.Layer.extend({
 
         this.backItem = cc.MenuItemSprite.create(norBack, pressBack, null, this.backToGame, this);
         //pauseItem.initWithNormalSprite();
-        this.backItem.setPosition(cc.p(winSize.width - norBack.getContentSize().width / 2 - 10, norBack.getContentSize().height / 2 + 10));
+        this.backItem.setPosition(cc.p(winSize.width - norBack.getContentSize().width / 2 - 10 - gameMarginX, norBack.getContentSize().height / 2 + 10 + gameMarginY));
         var menuBack = cc.Menu.create(this.backItem);
         menuBack.setPosition(cc.p(0, 0));
         this.addChild(menuBack);
@@ -51,7 +51,7 @@ var GameOverLayer = cc.Layer.extend({
         this.hiScoreItem = cc.LabelBMFont.create(hiScore, "font/font.fnt");
         this.hiScoreItem.setColor(cc.color(143, 146, 147, 255));
         this.hiScoreItem.setAnchorPoint(cc.p(0, 0.5));
-        this.hiScoreItem.setPosition(cc.p(150, winSize.height - 53));
+        this.hiScoreItem.setPosition(cc.p(150 * gameScale + gameMarginX, winSize.height - 54 * gameScale - gameMarginY));
         this.addChild(this.hiScoreItem);
 
         var delay = cc.DelayTime.create(0.5);

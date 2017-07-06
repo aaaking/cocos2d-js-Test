@@ -10,6 +10,7 @@ var gameWidth = 100;
 var gameHeight = 200;
 var gameMarginX = 200;
 var gameMarginY = 200;
+var gameScale = 1;
 
 var GameLayer = cc.Layer.extend({
     background1: null,
@@ -40,12 +41,14 @@ var GameLayer = cc.Layer.extend({
         var scaleX_1 = size.width / this.background1.getContentSize().width;
         var scaleY_1 = size.height / this.background1.getContentSize().height;
         if (scaleX_1 > scaleY_1) {
+            gameScale = scaleY_1;
             this.background1.setScale(scaleY_1);
             gameWidth = this.background1.getContentSize().width * scaleY_1;
             gameHeight = this.background1.getContentSize().height * scaleY_1;
             gameMarginX = (size.width - gameWidth) / 2;
             gameMarginY = 0;
         } else {
+            gameScale = scaleX_1;
             this.background1.setScale(scaleX_1);
             gameWidth = this.background1.getContentSize().width * scaleX_1;
             gameHeight = this.background1.getContentSize().height * scaleX_1;
