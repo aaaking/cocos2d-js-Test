@@ -15,9 +15,11 @@ var BulletLayer = cc.Layer.extend({
     },
 
     init: function () {
-        var texture = cc.textureCache.getTextureForKey(res.s_shoot);
-        this.bulletBatchNode = cc.SpriteBatchNode.createWithTexture(texture);
-        this.addChild(this.bulletBatchNode);
+        // var texture = cc.textureCache.getTextureForKey("#bullet1.png");
+        this.bulletBatchNode = cc.SpriteBatchNode.create(res.s_shoot);
+        // this.bulletBatchNode = cc.Sprite.createWithTexture(texture);
+        // this.bulletBatchNode = cc.SpriteBatchNode.create(res.s_shoot);
+        // this.addChild(this.bulletBatchNode);
     },
     startShoot: function (delay) {
         this.schedule(this.addBullet, 0.25 * this.bulletFactor, cc.REPEAT_FOREVER, delay);
@@ -28,7 +30,9 @@ var BulletLayer = cc.Layer.extend({
     addBullet: function () {
         // var bullet = cc.Sprite.createWithSpriteFrameName("bullet1.png");
         var bullet = cc.Sprite.create("#bullet1.png");
-        this.bulletBatchNode.addChild(bullet);
+        this.addChild(bullet);
+        // bullet.setTexture(this.bulletBatchNode.getTexture());
+        // this.bulletBatchNode.addChild(bullet);
         this.allBullets.push(bullet);
         // bullet.setScale(planeSprite.getContentSize().height/bullet.getContentSize().height)
         var bulletPosition = new cc.Point(this.planeSprite.getPositionX(), this.planeSprite.getPositionY() + this.planeSprite.getContentSize().height / 2);
@@ -43,7 +47,6 @@ var BulletLayer = cc.Layer.extend({
     bulletMoveDone: function (bullet) {
         cc.arrayRemoveObject(this.allBullets, bullet);
         this.bulletBatchNode.removeChild(bullet, true);
-
     },
     removeBullet: function (bullet) {
         this.bulletMoveDone(bullet);
