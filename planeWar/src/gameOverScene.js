@@ -59,7 +59,6 @@ var GameOverLayer = cc.Layer.extend({
         var scaleIn = cc.ScaleBy.create(0.5, 0.75);
         var actSeq = cc.Sequence.create(delay, scaleOut, scaleIn);
         this.scoreItem.runAction(actSeq);
-
         if (score > hiScore) {
             cc.sys.localStorage.setItem("highScore", score);
             var delay = cc.DelayTime.create(1.3);
@@ -68,7 +67,6 @@ var GameOverLayer = cc.Layer.extend({
                 this.hiScoreItem.setString(data)
             }, this, score);
             var moveIn = cc.MoveBy.create(0.1, cc.p(0, -100))
-
             var actSeq = cc.Sequence.create(delay, moveOut, changeScore, moveIn);
             this.hiScoreItem.runAction(actSeq);
         }
