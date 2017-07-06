@@ -31,7 +31,7 @@ var GameLayer = cc.Layer.extend({
         deleteColor.addChild(this.planeLayer);
         this.addChild(deleteColor);
         //子弹
-        this.bulletLayer = new BulletLayer();
+        this.bulletLayer = new BulletLayer(this.planeLayer.getChildByTag(AIRPLANE));
         this.bulletLayer.startShoot();
         deleteColor.addChild(this.bulletLayer);
     }
