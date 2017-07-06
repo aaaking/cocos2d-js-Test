@@ -41,7 +41,6 @@ var PlaneLayer = cc.Layer.extend({
         var animate = cc.Animate.create(animation);
         var removePlane = cc.CallFunc.create(this.removePlane, this);
         var actSeq = cc.Sequence.create(animate, removePlane);
-
         this.getChildByTag(AIRPLANE).stopAllActions();
         this.getChildByTag(AIRPLANE).runAction(actSeq);
     },
