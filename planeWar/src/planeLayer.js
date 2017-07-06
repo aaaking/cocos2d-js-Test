@@ -48,10 +48,10 @@ var PlaneLayer = cc.Layer.extend({
         this.removeChildByTag(AIRPLANE);
         var gameOverScene = new GameOverScene();
         gameOverScene.init();
-        var hiScore = sys.localStorage["highScore"] || 0;
+        var hiScore = cc.sys.localStorage["highScore"] || 0;
         gameOverScene.setScore(this.getParent().score, hiScore);
         var tras = cc.TransitionMoveInL.create(0.8, gameOverScene);
-        cc.Director.getInstance().replaceScene(tras);
+        cc.director.runScene(tras);
     },
 
     EOF: function () {

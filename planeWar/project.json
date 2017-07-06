@@ -18,6 +18,7 @@
         "src/enemyLayer.js",
         "src/utilFuncs.js",
         "src/controlLayer.js",
+        "src/gameOverScene.js",
         "src/app.js"
     ]
 }
