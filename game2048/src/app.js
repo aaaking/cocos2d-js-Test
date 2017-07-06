@@ -159,14 +159,14 @@ var GameLayer = cc.Layer.extend({
     onTouchDispose: function (offsetX, offsetY) {
         if (Math.abs(offsetX) > Math.abs(offsetY)) {
             if (offsetX > 5) {
-                if (!this.canDoLeft()) {
+                if (!this.canDoLeft() || this.isWin()) {
                     return;
                 }
                 this.doLeft();
                 this.checkGameOver();
                 this.setScore(this.score);
             } else if (offsetX < -5) {
-                if (!this.canDoRight()) {
+                if (!this.canDoRight() || this.isWin()) {
                     return;
                 }
                 this.doRight();
@@ -175,14 +175,14 @@ var GameLayer = cc.Layer.extend({
             }
         } else {
             if (offsetY > 5) {
-                if (!this.canDoDown()) {
+                if (!this.canDoDown() || this.isWin()) {
                     return;
                 }
                 this.doDown();
                 this.checkGameOver();
                 this.setScore(this.score);
             } else if (offsetY < -5) {
-                if (!this.canDoUp()) {
+                if (!this.canDoUp() || this.isWin()) {
                     return;
                 }
                 this.doUp();
@@ -373,7 +373,7 @@ var GameLayer = cc.Layer.extend({
             }
         }
         if (isGameOver) {
-            this.gameOverLayer = cc.LayerColor(new cc.color(0, 0, 0, 100), null, null);
+            this.gameOverLayer = new cc.LayerColor(new cc.color(0, 0, 0, 100), null, null);
             var labelGameOver = new cc.LabelTTF("GameOver!!!", "Arial", 60);
             labelGameOver.setPosition(size.width / 2, size.height / 2);
             this.gameOverLayer.addChild(labelGameOver);
@@ -385,10 +385,16 @@ var GameLayer = cc.Layer.extend({
             }
         }
         if (this.isWin()) {
-            this.gameWinLayer = cc.LayerColor(new cc.color(0, 0, 0, 100), null, null);
-            var labelGameWin = new cc.LabelTTF("You win!!!", "Arial", 60);
-            labelGameWin.setPosition(size.width, size.height);
+            this.gameWinLayer = new cc.LayerColor(new cc.color(0, 0, 0, 100), null, null);
+            var labelGameWin = new cc.LabelTTF("You Win!!!", "Arial", 60);
+            labelGameWin.setPosition(size.width / 2, size.height / 2 + 30);
+            var text = new cc.LabelTTF("Your Score : ", "Arial", 30);
+            text.setPosition(size.width / 2 - 50, size.height / 2 - 30);
+            var labelScore = new cc.LabelTTF(this.score, "Arial", 30);
+            labelScore.setPosition(size.width / 2 + 75, size.height / 2 - 30);
             this.gameWinLayer.addChild(labelGameWin);
+            this.gameWinLayer.addChild(text);
+            this.gameWinLayer.addChild(labelScore);
             this.getParent().addChild(this.gameWinLayer, 1);
             this.scheduleOnce(this.removeGameWinLayer, 4);
         }
@@ -407,11 +413,14 @@ var GameLayer = cc.Layer.extend({
     },
     removeGameOverLayer: function () {
         this.gameOverLayer.removeFromParent();
-        cc.director.replaceScene(cc.TransitionFade(1, new HelloWorldScene()));
+        cc.director.runScene(cc.TransitionFade.create(1, new HelloWorldScene()));
+        // cc.director.replaceScene().runScene(cc.TransitionFade.create(1, new HelloWorldScene()));
+        // 不知道为啥这样不行，貌似coocs2d-js 3.x 之后场景切换用的是 cc.director.runScene
     },
     removeGameWinLayer: function () {
         this.gameWinLayer.removeFromParent();
-        cc.director.replaceScene(cc.TransitionFade(1, new HelloWorldScene()));
+        cc.director.runScene(cc.TransitionFade.create(1, new HelloWorldScene()));
+        // cc.director.replaceScene(cc.TransitionFade.create(1, new HelloWorldScene()));
     }
 });
 
