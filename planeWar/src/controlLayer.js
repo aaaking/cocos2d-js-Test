@@ -9,6 +9,7 @@ var ControlLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         this.init();
+        this.loadListener();
     },
 
     init: function () {
@@ -41,9 +42,42 @@ var ControlLayer = cc.Layer.extend({
 //        }
 
     },
+    loadListener: function () {
+        var listener = cc.EventListener.create({
+            event: cc.EventListener.TOUCH_ONE_BY_ONE,
+            target: this.pauseItem,
+            swallowTouches: true,//不向下触摸，简单点来说，比如有两个sprite ,A 和 B，A在上B在下（位置重叠），触摸A的时候，B不会受到影响
+            onTouchBegan: this.onTouchBegan,
+            onTouchMoved: this.onTouchMoved,
+            onTouchEnded: this.onTouchEnded
+        });
+        cc.eventManager.addListener(listener, this.pauseItem);
+    },
+    onTouchBegan: function (touch , event) {
+        var self = this.target;
+        var touchPoint = touch.getLocation();
+        var locationInNode = self.convertToNodeSpace(touchPoint);
+        var rect = cc.rect(0, 0, self.getContentSize().width, self.getContentSize().height);
+        if (cc.rectContainsPoint(rect, locationInNode)) {
+            return true;
+        }
+        return false;
+    },
+    onTouchMoved: function (touch, event) {
+
+    },
+    onTouchEnded: function (touch, event) {
+        var self = this.target;
+        var touchPoint = touch.getLocation();
+        var locationInNode = self.convertToNodeSpace(touchPoint);
+        var rect = cc.rect(0, 0, self.getContentSize().width, self.getContentSize().height);
+        if (!cc.rectContainsPoint(rect, locationInNode)) {
+            return;
+        }
+        self.getParent().getParent().menuPauseCallback();
+    },
     menuPauseCallback: function (obj) {
         var director = cc.director;
-
         if (!director.isPaused()) {
             this.pauseItem.setNormalImage(cc.Sprite.create("#game_resume_nor.png"));
             this.pauseItem.setSelectedImage(cc.Sprite.create("#game_resume_pressed.png"));
