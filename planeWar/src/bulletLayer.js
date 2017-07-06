@@ -47,6 +47,7 @@ var BulletLayer = cc.Layer.extend({
     bulletMoveDone: function (bullet) {
         cc.arrayRemoveObject(this.allBullets, bullet);
         this.bulletBatchNode.removeChild(bullet, true);
+        this.removeChild(bullet, true);
     },
     removeBullet: function (bullet) {
         this.bulletMoveDone(bullet);
