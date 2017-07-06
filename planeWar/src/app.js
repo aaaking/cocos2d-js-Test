@@ -26,7 +26,7 @@ var GameLayer = cc.Layer.extend({
     init: function () {
         // this.setTouchEnabled(true);
         // this.setMouseEnabled(true);
-        // this.setKeyboardEnabled(true);
+        // this.setKeyboardEnabled(true);//We have delete these three functions from layer in v3.0.
         var size = cc.winSize;
         var deleteLayer = new cc.LayerColor(cc.color(100, 200, 100, 255), size.width, size.height);
 

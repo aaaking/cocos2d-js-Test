@@ -123,7 +123,7 @@ var GameLayer = cc.Layer.extend({
         var listener = cc.EventListener.create({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
             target: this,
-            swallowTouches: true,
+            swallowTouches: true,//不向下触摸，简单点来说，比如有两个sprite ,A 和 B，A在上B在下（位置重叠），触摸A的时候，B不会受到影响
             onTouchBegan: this.onTouchBegan,
             onTouchMoved: this.onTouchMoved,
             onTouchEnded: this.onTouchEnded
