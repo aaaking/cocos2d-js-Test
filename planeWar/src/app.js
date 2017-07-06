@@ -139,8 +139,8 @@ var GameLayer = cc.Layer.extend({
                         this.bulletLayer.stopShoot();
                         //this.enemyLayer.clearAllEnemy();
                         this.planeLayer.blowUp();
-                        enemyBToDelete.push(enemyBs[j]);
                     }
+                    enemyBToDelete.push(enemyBs[j]);
                 }
             }
         }
