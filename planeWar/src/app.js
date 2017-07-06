@@ -23,6 +23,7 @@ var GameLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         this.init();
+        this.loadListener();
         return true;
     },
 
@@ -92,6 +93,35 @@ var GameLayer = cc.Layer.extend({
     updateBgPosition: function () {
         this.background1.setPositionY(this.bgPosY);
         this.background2.setPositionY(this.bgPosY + gameHeight - 2);
+    },
+    loadListener: function () {
+        var listener = cc.EventListener.create({
+            event: cc.EventListener.TOUCH_ONE_BY_ONE,
+            target: this,
+            swallowTouches: false,
+            onTouchBegan: this.onTouchBegan,
+            onTouchMoved: this.onTouchMoved,
+            onTouchEnded: this.onTouchEnded
+        });
+        cc.eventManager.addListener(listener, this);
+    },
+    onTouchBegan: function (touch, event) {
+        var self = this.target;
+        var position = touch.getLocation();
+        var plane = self.planeLayer.getChildByTag(AIRPLANE);
+        var locationInNode = plane.convertToNodeSpace(position);
+        var rect = cc.rect(0, 0, plane.getContentSize().width, plane.getContentSize().height);
+        if (cc.rectContainsPoint(rect, locationInNode)) {
+            return true;
+        }
+        return false;
+    },
+    onTouchMoved: function (touch, event) {
+        var self = this.target;
+        var position = touch.getLocation();
+        self.planeLayer.getChildByTag(AIRPLANE).setPosition(position.x, position.y);
+    },
+    onTouchEnded: function (touch, event) {
     }
 });
 
