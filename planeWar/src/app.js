@@ -117,9 +117,29 @@ var GameLayer = cc.Layer.extend({
         return false;
     },
     onTouchMoved: function (touch, event) {
+        var size = cc.director.getWinSize();
         var self = this.target;
+        var plane = self.planeLayer.getChildByTag(AIRPLANE);
         var position = touch.getLocation();
-        self.planeLayer.getChildByTag(AIRPLANE).setPosition(position.x, position.y);
+        var toX = position.x;
+        var toY = position.y;
+        var minX = gameMarginX + plane.getContentSize().width / 2;
+        var maxX = size.width - minX;
+        var minY = gameMarginY + plane.getContentSize().height / 2;
+        var maxY = size.height - minY;
+        if (position.x <= minX) {
+            toX = minX;
+        }
+        if (position.x >= maxX) {
+            toX = maxX;
+        }
+        if (position.y <= minY) {
+            toY = minY;
+        }
+        if (position.y >= maxY) {
+            toY = maxY;
+        }
+        self.planeLayer.getChildByTag(AIRPLANE).setPosition(toX, toY);
     },
     onTouchEnded: function (touch, event) {
     }
