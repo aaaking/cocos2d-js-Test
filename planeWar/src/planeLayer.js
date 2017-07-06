@@ -34,11 +34,10 @@ var PlaneLayer = cc.Layer.extend({
         this.isAlive = false;
         var animation = cc.Animation.create();
         animation.setDelayPerUnit(0.2);
-        animation.addSpriteFrame(cc.SpriteFrameCache.getInstance().getSpriteFrame("hero_blowup_n1.png"));
-        animation.addSpriteFrame(cc.SpriteFrameCache.getInstance().getSpriteFrame("hero_blowup_n2.png"));
-        animation.addSpriteFrame(cc.SpriteFrameCache.getInstance().getSpriteFrame("hero_blowup_n3.png"));
-        animation.addSpriteFrame(cc.SpriteFrameCache.getInstance().getSpriteFrame("hero_blowup_n4.png"));
-
+        animation.addSpriteFrame(cc.spriteFrameCache.getSpriteFrame("hero_blowup_n1.png"));
+        animation.addSpriteFrame(cc.spriteFrameCache.getSpriteFrame("hero_blowup_n2.png"));
+        animation.addSpriteFrame(cc.spriteFrameCache.getSpriteFrame("hero_blowup_n3.png"));
+        animation.addSpriteFrame(cc.spriteFrameCache.getSpriteFrame("hero_blowup_n4.png"));
         var animate = cc.Animate.create(animation);
         var removePlane = cc.CallFunc.create(this.removePlane, this);
         var actSeq = cc.Sequence.create(animate, removePlane);
@@ -48,7 +47,6 @@ var PlaneLayer = cc.Layer.extend({
     },
     removePlane: function () {
         this.removeChildByTag(AIRPLANE)
-
         var gameOverScene = new GameOverScene();
         gameOverScene.init();
         var hiScore = sys.localStorage["highScore"] || 0;
