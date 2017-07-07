@@ -17,7 +17,7 @@ var MainLayer = cc.Layer.extend({
         helloLabel.y = size.height / 2 + 200;
         this.addChild(helloLabel, 5);
         var start = new cc.MenuItemFont("StartGame", function () {
-            cc.director.runScene(new cc.TransitionFade(0.8, new GameScene()));//TransitionMoveInL  TransitionCrossFade
+            cc.director.runScene(new cc.TransitionFade(0.4, new GameScene()));//TransitionMoveInL  TransitionCrossFade
         }, this);
         start.setFontSize(60);
         var menu = new cc.Menu(start);

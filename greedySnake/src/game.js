@@ -15,6 +15,7 @@ var GameLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         this.init();
+        this.initPauseItem();
         return true;
     },
 
@@ -38,9 +39,26 @@ var GameLayer = cc.Layer.extend({
         }
         // 分数
         this.score = new cc.LabelTTF("0", "", 45);
-        this.score.setPosition(this.score.width / 2 + 20, cc.winSize.height - this.score.height - 10);
+        this.score.setPosition(this.score.width / 2 + 40, cc.winSize.height - this.score.height / 2 - 10);
         this.addChild(this.score);
         // this.schedule(this.snakeMove, Constants.frequency);
         // this.schedule(this.updateStar);
+    },
+
+    initPauseItem: function () {
+        var pause = new cc.MenuItemFont("Pause", function () {
+            if (cc.director.isPaused()) {
+                pause.setString("Pause");
+                cc.director.resume();
+            } else {
+                pause.setString("Continue");
+                cc.director.pause();
+            }
+        }, this);
+        pause.setFontSize(30);
+        pause.setColor(cc.color(255, 255, 255));
+        var menu = new cc.Menu(pause);
+        menu.setPosition(pause.width / 2 + 40, this.score.getPositionY() - pause.height / 2 - this.score.height / 2 - 5);
+        this.addChild(menu);
     }
 });
