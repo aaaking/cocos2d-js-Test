@@ -4,6 +4,8 @@ var res = {
     head_right: "res/heand_2.png",
     head_up: "res/heand_3.png",
     node: "res/node.png",
+    control_pole_bg: "res/control_pole_bg.png",
+    control_arrow: "res/control_arrow.png",
     food: "res/jindou.png"
 };
 

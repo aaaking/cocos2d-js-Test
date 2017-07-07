@@ -12,10 +12,12 @@ var GameLayer = cc.Layer.extend({
     food: null,// food
     canNewNode: 0,// 0-无,1-有
     score: null,// 分数Label
+    controlLayer: null,
     ctor: function () {
         this._super();
         this.init();
         this.initPauseItem();
+        this.initControl();
         return true;
     },
 
@@ -60,6 +62,11 @@ var GameLayer = cc.Layer.extend({
         var menu = new cc.Menu(pause);
         menu.setPosition(pause.width / 2 + 40, this.score.getPositionY() - pause.height / 2 - this.score.height / 2 - 5);
         this.addChild(menu);
+    },
+
+    initControl: function () {
+        this.controlLayer = new ControlLayer();
+        this.addChild(this.controlLayer);
     },
     snakeMove: function () {
         for (var index in this.nodes) {

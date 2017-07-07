@@ -16,6 +16,7 @@
         "src/game.js",
         "src/snake.js",
         "src/gameOver.js",
+        "src/control.js",
         "src/app.js"
     ]
 }
