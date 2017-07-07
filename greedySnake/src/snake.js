@@ -13,19 +13,19 @@ var SnakeNode = cc.Sprite.extend({
 
     init: function () {
         if (this.previousNode == null) {
-            this.setTexture(res.head_right);
+            this.setTexture(res.head_up);
             switch (this.direction) {
                 case 1:
-                    this.setRotation(-90);
+                    this.setRotation(0);
                     break;
                 case 2:
-                    this.setRotation(-270);
+                    this.setRotation(180);
                     break;
                 case 3:
-                    this.setRotation(-180);
+                    this.setRotation(270);
                     break;
                 case 4:
-                    this.setRotation(0);
+                    this.setRotation(90);
                     //this.setTexture(res.head_right);这样更改图片也行，图片太多会加载慢
                     break;
             }
@@ -84,16 +84,16 @@ var SnakeNode = cc.Sprite.extend({
         if (this.previousNode == null) {
             switch (this.nextDirection) {
                 case 1:
-                    this.setRotation(-90);
+                    this.setRotation(0);
                     break;
                 case 2:
-                    this.setRotation(-270);
+                    this.setRotation(180);
                     break;
                 case 3:
-                    this.setRotation(-180);
+                    this.setRotation(270);
                     break;
                 case 4:
-                    this.setRotation(0);
+                    this.setRotation(90);
                     //this.setTexture(res.head_right);这样更改图片也行，图片太多会加载慢
                     break;
             }

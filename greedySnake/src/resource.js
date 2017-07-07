@@ -1,5 +1,5 @@
 var res = {
-    head_right: "res/head_right.png",
+    head_up: "res/head_up.png",
     node: "res/node.png",
     control_pole_bg: "res/control_pole_bg.png",
     control_arrow: "res/control_arrow.png",
