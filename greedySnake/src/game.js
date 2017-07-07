@@ -118,5 +118,7 @@ var GameLayer = cc.Layer.extend({
                 }
             }
         }
+    },
+    changeDirection: function (direction) {
     }
 });
