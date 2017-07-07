@@ -45,7 +45,7 @@ var ControlLayer = cc.Layer.extend({
         var listener = cc.EventListener.create({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
             target: this,
-            swallowTouches: true,
+            swallowTouches: false,
             onTouchBegan: this.onTouchBegan,
             onTouchEnded: this.onTouchEnded
         });

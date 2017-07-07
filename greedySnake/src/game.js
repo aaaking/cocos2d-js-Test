@@ -50,6 +50,7 @@ var GameLayer = cc.Layer.extend({
 
     initPauseItem: function () {
         var pause = new cc.MenuItemFont("Pause", function () {
+            console.log("hodhahfouwhghahuohew");
             if (cc.director.isPaused()) {
                 pause.setString("Pause");
                 cc.director.resume();
@@ -58,7 +59,7 @@ var GameLayer = cc.Layer.extend({
                 cc.director.pause();
             }
         }, this);
-        pause.setFontSize(30);
+        pause.setFontSize(45);
         pause.setColor(cc.color(255, 255, 255));
         var menu = new cc.Menu(pause);
         menu.setPosition(pause.width / 2 + 40, this.score.getPositionY() - pause.height / 2 - this.score.height / 2 - 5);
