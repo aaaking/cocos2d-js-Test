@@ -8,6 +8,7 @@ var GameScene = cc.Scene.extend({
 
 var GameLayer = cc.Layer.extend({
     nodes: [],
+    head: null,
     tail: null,// snake tail
     food: null,// food
     canNewNode: 0,// 0-无,1-有
@@ -26,12 +27,12 @@ var GameLayer = cc.Layer.extend({
         var bg = new cc.LayerGradient(cc.color(85, 142, 139, 100), cc.color(6, 31, 33, 100), cc.p(0, 0));
         this.addChild(bg);
         //头
-        var head = new SnakeNode(null, 4);
-        head.setPosition(200, 300);
-        this.addChild(head);
-        this.nodes.push(head);
-        head.setTag(1);
-        this.tail = head;
+        this.head = new SnakeNode(null, 4);
+        this.head.setPosition(200, 300);
+        this.addChild(this.head);
+        this.nodes.push(this.head);
+        this.head.setTag(1);
+        this.tail = this.head;
         // 循环添加5个节点
         for (var i = 0; i < 2; i++) {
             var node = new SnakeNode(this.tail, this.tail.direction);
@@ -120,5 +121,10 @@ var GameLayer = cc.Layer.extend({
         }
     },
     changeDirection: function (direction) {
+        var sum = this.head.nextDirection + direction;//3表示上下更改方向，7表示左右更改方向，这两种情况不考虑或者认为gameOver
+        if (sum == 3 || sum == 7) {
+            return;
+        }
+        this.head.nextDirection = direction;
     }
 });

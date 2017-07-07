@@ -56,7 +56,7 @@ var SnakeNode = cc.Sprite.extend({
         return true;
     },
     move: function (layer) {
-        var star = layer.star;
+        var food = layer.food;
         var direct;
         if (this.previousNode == null) {
             direct = this.nextDirection;
@@ -115,20 +115,20 @@ var SnakeNode = cc.Sprite.extend({
                 }
             }
             // 判断是否吃到星星
-            if (star != null) {
-                if (cc.rectIntersectsRect(this.getBoundingBox(), star.getBoundingBox())) {
-                    star.runAction(
+            if (food != null) {
+                if (cc.rectIntersectsRect(this.getBoundingBox(), food.getBoundingBox())) {
+                    food.runAction(
                         cc.sequence(cc.spawn(
                             cc.scaleTo(0.2, 3),
                             cc.fadeOut(0.2)
-                        ), cc.callFunc(function (star) {
-                            star.removeFromParent();
-                        }, star))
+                        ), cc.callFunc(function (food) {
+                            food.removeFromParent();
+                        }, food))
                     );
                     // 清除星星
-                    layer.star = null;
+                    layer.food = null;
                     // 添加身体
-                    layer.canNewBody = 1;
+                    layer.canNewNode = 1;
                     // 改变分数
                     layer.score.setString("" + (Number(layer.score.getString()) + Math.round(Math.random() * 3 + 1)));
                     layer.score.runAction(cc.sequence(cc.scaleTo(0.1, 2), cc.scaleTo(0.1, 0.5), cc.scaleTo(0.1, 1)));
