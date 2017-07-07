@@ -16,6 +16,7 @@ var GameLayer = cc.Layer.extend({
     controlLayer: null,
     ctor: function () {
         this._super();
+        this.nodes = [];
         this.init();
         this.initPauseItem();
         this.initControl();
@@ -44,13 +45,12 @@ var GameLayer = cc.Layer.extend({
         this.score = new cc.LabelTTF("0", "", 45);
         this.score.setPosition(this.score.width / 2 + 40, cc.winSize.height - this.score.height / 2 - 10);
         this.addChild(this.score);
-        this.schedule(this.snakeMove, Constants.frequency);
         this.schedule(this.updateStar);
+        this.schedule(this.snakeMove, Constants.frequency);
     },
 
     initPauseItem: function () {
         var pause = new cc.MenuItemFont("Pause", function () {
-            console.log("hodhahfouwhghahuohew");
             if (cc.director.isPaused()) {
                 pause.setString("Pause");
                 cc.director.resume();
