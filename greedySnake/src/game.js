@@ -10,6 +10,7 @@ var GameLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         this.init();
+        return true;
     },
 
     init: function () {
