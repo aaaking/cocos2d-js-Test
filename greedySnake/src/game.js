@@ -77,7 +77,7 @@ var GameLayer = cc.Layer.extend({
                 this.unschedule(this.snakeMove);
                 this.unschedule(this.updateStar);
                 var gameOverScene = new GameOverScene(Number(this.score.getString()), false);
-                cc.director.runScene(new cc.TransitionFade(1, gameOverScene));
+                cc.director.runScene(new cc.TransitionFade(0.5, gameOverScene));
             }
         }
         for (var index in this.nodes) {
