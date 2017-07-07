@@ -14,6 +14,7 @@
     "jsList" : [
         "src/resource.js",
         "src/game.js",
+        "src/snake.js",
         "src/app.js"
     ]
 }
