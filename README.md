@@ -11,3 +11,10 @@
 点击[https://aaaking.github.io/cocos2d-js-Test/planeWar/index.html](https://aaaking.github.io/cocos2d-js-Test/planeWar/index.html)玩
 
 参考代码[https://github.com/greycode/airplane](https://github.com/greycode/airplane), 只是用来练习和熟悉cocos2d-js
+
+
+## 贪吃蛇greedySnake
+
+点击[https://aaaking.github.io/cocos2d-js-Test/greedySnake/index.html](https://aaaking.github.io/cocos2d-js-Test/greedySnake/index.html)玩
+
+cocos2d-js写的贪吃蛇
