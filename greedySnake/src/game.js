@@ -9,7 +9,7 @@ var GameScene = cc.Scene.extend({
 var GameLayer = cc.Layer.extend({
     nodes: [],
     tail: null,// snake tail
-    food: null,// star
+    food: null,// food
     canNewNode: 0,// 0-无,1-有
     score: null,// 分数Label
     ctor: function () {
@@ -42,7 +42,7 @@ var GameLayer = cc.Layer.extend({
         this.score.setPosition(this.score.width / 2 + 40, cc.winSize.height - this.score.height / 2 - 10);
         this.addChild(this.score);
         this.schedule(this.snakeMove, Constants.frequency);
-        // this.schedule(this.updateStar);
+        this.schedule(this.updateStar);
     },
 
     initPauseItem: function () {
@@ -86,6 +86,30 @@ var GameLayer = cc.Layer.extend({
         }
     },
     updateStar: function () {
-        //: todo
+        if (this.food == null) {
+            this.food = new cc.Sprite(res.food);
+            var randomX = Math.random() * (cc.winSize.width - this.food.width) + this.food.width;
+            var randomY = Math.random() * (cc.winSize.height - this.food.width) + this.food.height;
+            this.food.setPosition(randomX, randomY);
+            this.addChild(this.food);
+            // 产生的星星只要在屏幕外,或与蛇的身体部分重叠,则本次任务不产生
+            if ((randomX > cc.winSize.width - this.food.width / 2)
+                || (randomX < this.food.width / 2)
+                || (randomY > cc.winSize.height - this.food.height / 2)
+                || (randomY < this.food.height / 2)) {
+                cc.log("update food:out of screen");
+                this.removeChild(this.food);
+                this.food = null;
+                return;
+            }
+            for (var index in this.nodes) {
+                if (cc.rectIntersectsRect(this.nodes[index].getBoundingBox(), this.food.getBoundingBox())) {
+                    cc.log("update food:intersect with self");
+                    this.removeChild(this.food);
+                    this.food = null;
+                    return;
+                }
+            }
+        }
     }
 });
