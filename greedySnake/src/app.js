@@ -1,4 +1,4 @@
-var HelloWorldLayer = cc.Layer.extend({
+var MainLayer = cc.Layer.extend({
     sprite: null,
     ctor: function () {
         this._super();
@@ -29,7 +29,7 @@ var HelloWorldLayer = cc.Layer.extend({
 var HelloWorldScene = cc.Scene.extend({
     onEnter: function () {
         this._super();
-        var layer = new HelloWorldLayer();
+        var layer = new MainLayer();
         this.addChild(layer);
     }
 });
