@@ -25,13 +25,13 @@ var GameLayer = cc.Layer.extend({
         this.addChild(bg);
         //头
         var head = new SnakeNode(null, 4);
-        head.setPosition(300, 300);
+        head.setPosition(200, 300);
         this.addChild(head);
         this.nodes.push(head);
         head.setTag(1);
         this.tail = head;
         // 循环添加5个节点
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 2; i++) {
             var node = new SnakeNode(this.tail, this.tail.direction);
             this.addChild(node);
             this.nodes.push(node);
@@ -41,7 +41,7 @@ var GameLayer = cc.Layer.extend({
         this.score = new cc.LabelTTF("0", "", 45);
         this.score.setPosition(this.score.width / 2 + 40, cc.winSize.height - this.score.height / 2 - 10);
         this.addChild(this.score);
-        // this.schedule(this.snakeMove, Constants.frequency);
+        this.schedule(this.snakeMove, Constants.frequency);
         // this.schedule(this.updateStar);
     },
 
@@ -60,5 +60,32 @@ var GameLayer = cc.Layer.extend({
         var menu = new cc.Menu(pause);
         menu.setPosition(pause.width / 2 + 40, this.score.getPositionY() - pause.height / 2 - this.score.height / 2 - 5);
         this.addChild(menu);
+    },
+    snakeMove: function () {
+        for (var index in this.nodes) {
+            // 循环执行移动方法,并返回移动结果,false即视为游戏结束
+            if (!this.nodes[index].move(this)) {
+                // 执行移动方法,移动失败,游戏结束
+                this.unschedule(this.snakeMove);
+                this.unschedule(this.updateStar);
+                var gameOverScene = new GameOverScene(Number(this.score.getString()), false);
+                cc.director.runScene(new cc.TransitionFade(1, gameOverScene));
+            }
+        }
+        for (var index in this.nodes) {
+            // 本轮所有关节移动结束,所有节点的当前方向赋值为下一次的方向
+            this.nodes[index].direction = this.nodes[index].nextDirection;
+        }
+        if (this.canNewNode == 1) {
+            // 如果新增关节为1,增加关节
+            var node = new SnakeNode(this.tail, this.tail.direction);
+            this.addChild(node);
+            this.nodes.push(node);
+            this.tail = node;
+            this.canNewNode = 0;
+        }
+    },
+    updateStar: function () {
+        //: todo
     }
 });

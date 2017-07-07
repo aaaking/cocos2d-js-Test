@@ -104,12 +104,13 @@ var SnakeNode = cc.Sprite.extend({
                 || (this.getPositionY() > size.height - this.height / 2)
                 || (this.getPositionY() < this.height / 2)) {
                 // 判断触碰边界
-                cc.log("game over");
+                cc.log("触碰边界");
                 return false;
             }
             for (var index in layer.nodes) {
                 if (layer.nodes[index] != this && cc.rectIntersectsRect(this.getBoundingBox(), layer.nodes[index].getBoundingBox())) {
                     // 判断是否触碰到自己身体关节
+                    cc.log("触碰到自己身体关节");
                     return false;
                 }
             }

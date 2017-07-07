@@ -15,6 +15,7 @@
         "src/resource.js",
         "src/game.js",
         "src/snake.js",
+        "src/gameOver.js",
         "src/app.js"
     ]
 }
