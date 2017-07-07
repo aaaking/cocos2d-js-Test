@@ -1,12 +1,9 @@
 var res = {
-    head_left: "res/heand_0.png",
-    head_down: "res/heand_1.png",
-    head_right: "res/heand_2.png",
-    head_up: "res/heand_3.png",
+    head_right: "res/head_right.png",
     node: "res/node.png",
     control_pole_bg: "res/control_pole_bg.png",
     control_arrow: "res/control_arrow.png",
-    food: "res/jindou.png"
+    food: "res/food.png"
 };
 
 var g_resources = [];
