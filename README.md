@@ -1,6 +1,6 @@
 ## game2048
 
-点击[https://aaaking.github.io/cocosjsTest/game2048/index.html](https://aaaking.github.io/cocosjsTest/game2048/index.html)玩
+点击[https://aaaking.github.io/cocos2d-js-Test/game2048/index.html](https://aaaking.github.io/cocos2d-js-Test/game2048/index.html)玩
 
 利用cocos2d-js开发的2048小游戏，打开[https://aaaking.github.io/cocos2d-js-Test/game2048/index.html](https://aaaking.github.io/cocos2d-js-Test/game2048/index.html)可以玩游戏。
 
