@@ -1,5 +1,7 @@
 var res = {
     logo: 'res/logo.png',
+    login_bg: 'res/menu-bg.png',
+    login_board: 'res/info-board.png',
     ///////////////////
     mode: {
         board: 'res/mode-board.png',
@@ -8,7 +10,6 @@ var res = {
     },
 
     info: {
-        board: 'res/info-board.png',
         done: 'res/done.png'
     },
 
@@ -19,7 +20,6 @@ var res = {
     //////////////////
     //menu
     menu: {
-        bg: 'res/menu-bg.png',
         playBtn: 'res/play-btn.png',
         playBtnS: 'res/play-btn-s.png',
         //storeBtn: 'res/store-btn.png',
@@ -32,7 +32,6 @@ var res = {
         startBtnS: 'res/start-btn-selected.png',
         aboutBtn: 'res/about-btn.png',
         aboutBtnS: 'res/about-btn-s.png',
-        logo: 'res/game-logo.png',
         wait: 'res/wait.png',
         enable: 'res/enable.png',
         disable: 'res/disable.png'

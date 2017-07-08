@@ -4,13 +4,13 @@ var ParkourSplashScene = cc.Scene.extend({
         var splashLayer = new SplashLayer();
         splashLayer.bake();
         this.addChild(splashLayer, 1, 1);
-        // setTimeout(function () {
-        //     if (cc.sys.localStorage.getItem("username")) {
-        //         cc.director.runScene(new WelcomeScene());
-        //     } else {
-        //         cc.director.runScene(new InfoScene());
-        //     }
-        // }.bind(this), 2000);
+        setTimeout(function () {
+            if (cc.sys.localStorage.getItem("username")) {
+                cc.director.runScene(new WelcomeScene());
+            } else {
+                cc.director.runScene(new LoginScene());
+            }
+        }.bind(this), 1500);
     }
 });
 
@@ -26,13 +26,12 @@ var SplashLayer = cc.Layer.extend({
         logo.setScale(2);
         this.addChild(logo, 1);
         logo.opacity = 0;
-        var fadeIn = cc.FadeIn.create(1.0);
-        var fadeOut = cc.FadeOut.create(1.0);
+        var fadeIn = cc.FadeIn.create(0.3);
+        var fadeOut = cc.FadeOut.create(0.2);
         var delay = cc.delayTime(1.2);
         var seq = cc.Sequence.create(
             fadeIn,
-            delay,
-            fadeOut);
+            delay);
         logo.runAction(seq);
 
         // cc.audioEngine.playEffect(res.splash_music);
