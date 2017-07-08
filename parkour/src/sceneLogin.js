@@ -14,9 +14,8 @@ var LoginLayer = cc.Layer.extend({
     },
     init: function () {
         var winsize = cc.winSize;
-        this.bg = new cc.Sprite(res.login_bg);
-        this.bg.setPosition(cc.p(winsize.width / 2, winsize.height / 2));
-        this.addChild(this.bg);
+        var bg = new cc.LayerGradient(cc.color(85, 142, 139, 100), cc.color(6, 31, 33, 100), cc.p(0, 0));
+        this.addChild(bg, 0);
 
         this.board = new cc.Sprite(res.login_board);
         this.board.setPosition(cc.p(winsize.width / 2, winsize.height));
