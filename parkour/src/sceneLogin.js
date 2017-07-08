@@ -15,13 +15,13 @@ var LoginLayer = cc.Layer.extend({
     init: function () {
         var winsize = cc.winSize;
         this.bg = new cc.Sprite(res.login_bg);
-        this.bg.setPosition(cc.p(winsize.width/2, winsize.height/2));
+        this.bg.setPosition(cc.p(winsize.width / 2, winsize.height / 2));
         this.addChild(this.bg);
 
         this.board = new cc.Sprite(res.login_board);
-        this.board.setPosition(cc.p(winsize.width/2, winsize.height));
+        this.board.setPosition(cc.p(winsize.width / 2, winsize.height));
         this.addChild(this.board);
-        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width/2, winsize.height/2)).easing(cc.easeElasticOut());
+        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width / 2, winsize.height / 2)).easing(cc.easeElasticOut());
         this.board.runAction(actionTo);
 
 //		var textField = new cc.TextFieldTTF("<click here for input>",
@@ -37,27 +37,27 @@ var LoginLayer = cc.Layer.extend({
         textField.fontName = "Helvetica";
         textField.fontSize = 25;
         textField.setPlaceHolder("请输入昵称^_^");
-        textField.x = winsize.width/2+50;
+        textField.x = winsize.width / 2 + 50;
         textField.y = winsize.height;
         this.addChild(textField);
 
-        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width/2+50, winsize.height/2-5)).easing(cc.easeElasticOut());
+        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width / 2 + 50, winsize.height / 2 - 5)).easing(cc.easeElasticOut());
         textField.runAction(actionTo);
 
         this.done = new cc.Menu(new cc.MenuItemSprite(
             new cc.Sprite(res.info.done),
             new cc.Sprite(res.info.done),
-            function() {
+            function () {
                 var username = textField.getString();
                 sys.localStorage.setItem("username", username);
                 cc.director.runScene(new WelcomeScene());
             }.bind(this), this));
-        this.done.setPosition(cc.p(winsize.width/2+120, winsize.height));
+        this.done.setPosition(cc.p(winsize.width / 2 + 120, winsize.height));
         this.addChild(this.done, 10);
-        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width/2+120, winsize.height/2-65)).easing(cc.easeElasticOut());
+        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width / 2 + 120, winsize.height / 2 - 65)).easing(cc.easeElasticOut());
         this.done.runAction(actionTo);
     },
-    onClickTrackNode:function (clicked) {
+    onClickTrackNode: function (clicked) {
         var textField = this._trackNode;
         if (clicked) {
             // TextFieldTTFTest be clicked
@@ -70,7 +70,7 @@ var LoginLayer = cc.Layer.extend({
         }
     },
 
-    onTextFieldInsertText:function (sender, text, len) {
+    onTextFieldInsertText: function (sender, text, len) {
         // if insert enter, treat as default to detach with ime
         if ('\n' == text) {
             return false;
