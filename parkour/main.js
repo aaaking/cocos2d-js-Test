@@ -75,15 +75,15 @@ cc.game.onStart = function(){
 
     // Setup the resolution policy and design resolution size
     // cc.view.setDesignResolutionSize(960, 640, cc.ResolutionPolicy.SHOW_ALL);
-    cc.view.setDesignResolutionSize(800, 480, cc.ResolutionPolicy.EXACT_FIT);
-    // var screenSize = cc.view.getFrameSize();
-    // w = screenSize.width;
-    // h = screenSize.height;
-    // CONFIG_SCREEN_WIDTH = 1600;
-    // CONFIG_SCREEN_HEIGHT = 960;
-    // scaleY =h / CONFIG_SCREEN_HEIGHT;
-    // CONFIG_SCREEN_WIDTH = screenSize.width / scaleY;
-    // cc.view.setDesignResolutionSize(CONFIG_SCREEN_WIDTH, 960, cc.ResolutionPolicy.NO_BORDER);
+    // cc.view.setDesignResolutionSize(800, 480, cc.ResolutionPolicy.EXACT_FIT);
+    var screenSize = cc.view.getFrameSize();
+    w = screenSize.width;
+    h = screenSize.height;
+    CONFIG_SCREEN_WIDTH = 720;
+    CONFIG_SCREEN_HEIGHT = 1280;
+    scaleY =h / CONFIG_SCREEN_HEIGHT;
+    CONFIG_SCREEN_WIDTH = screenSize.width / scaleY;
+    cc.view.setDesignResolutionSize(CONFIG_SCREEN_WIDTH, 1280, cc.ResolutionPolicy.NO_BORDER);
 
     // The game will be resized when browser size change
     cc.view.resizeWithBrowserSize(true);

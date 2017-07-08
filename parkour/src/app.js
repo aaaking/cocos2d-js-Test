@@ -18,25 +18,24 @@ var SplashLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         var size = cc.director.getWinSize();
-        var bg = new cc.Sprite(res.splash_bg);
-        bg.setPosition(cc.p(size.width / 2, size.height / 2));
+        var bg = new cc.LayerGradient(cc.color(85, 142, 139, 100), cc.color(6, 31, 33, 100), cc.p(0, 0));
         this.addChild(bg, 0);
 
-        var team = new cc.Sprite(res.logo);
-        team.setPosition(cc.p(size.width / 2, size.height / 2));
-        team.setScale(0.4);
-        this.addChild(team, 1);
-        team.opacity = 0;
+        var logo = new cc.Sprite(res.logo);
+        logo.setPosition(cc.p(size.width / 2, size.height / 2));
+        logo.setScale(2);
+        this.addChild(logo, 1);
+        logo.opacity = 0;
         var fadeIn = cc.FadeIn.create(1.0);
         var fadeOut = cc.FadeOut.create(1.0);
-        var delay = cc.delayTime(1);
+        var delay = cc.delayTime(1.2);
         var seq = cc.Sequence.create(
             fadeIn,
             delay,
             fadeOut);
-        team.runAction(seq);
+        logo.runAction(seq);
 
-        cc.audioEngine.playEffect(res.splash_music);
+        // cc.audioEngine.playEffect(res.splash_music);
 
         //load plist res to memory
         cc.spriteFrameCache.addSpriteFrames(res.gold.plist);

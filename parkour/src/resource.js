@@ -1,7 +1,5 @@
 var res = {
-    splash_bg: 'res/open-bg.png',
-    logo: 'res/maxon-team.png',
-    splash_music: 'res/sound/opening.mp3',
+    logo: 'res/logo.png',
     ///////////////////
     mode: {
         board: 'res/mode-board.png',
