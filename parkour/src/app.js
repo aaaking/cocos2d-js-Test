@@ -18,11 +18,11 @@ var SplashLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         var size = cc.director.getWinSize();
-        var bg = new cc.Sprite(res.open.bg);
+        var bg = new cc.Sprite(res.splash_bg);
         bg.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(bg, 0);
 
-        var team = new cc.Sprite(res.open.team);
+        var team = new cc.Sprite(res.logo);
         team.setPosition(cc.p(size.width / 2, size.height / 2));
         team.setScale(0.4);
         this.addChild(team, 1);
@@ -36,7 +36,7 @@ var SplashLayer = cc.Layer.extend({
             fadeOut);
         team.runAction(seq);
 
-        cc.audioEngine.playEffect(res.sound.opening);
+        cc.audioEngine.playEffect(res.splash_music);
 
         //load plist res to memory
         cc.spriteFrameCache.addSpriteFrames(res.gold.plist);
@@ -51,7 +51,6 @@ var SplashLayer = cc.Layer.extend({
 
         //load image to memory
         String.prototype.endWith = function (s) {
-            console.log("ddddddd: " + s + " " + this);
             if (s == null || s == "" || this.length == 0 || s.length > this.length)
                 return false;
             if (this.substring(this.length - s.length) == s)
@@ -77,8 +76,8 @@ var SplashLayer = cc.Layer.extend({
                     }
                 }
             } else {
-                if (typeof res[i][j] == "string") {
-                    if (!res[i][j].endWith("plist") && !res[i][j].endWith("mp3")) {
+                if (typeof res[i] == "string") {
+                    if (!res[i].endWith("plist") && !res[i].endWith("mp3")) {
                         temp.push(res[i]);
                     }
                 }

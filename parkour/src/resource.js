@@ -1,9 +1,7 @@
 var res = {
-    //opening
-    open: {
-        bg: 'res/open-bg.png',
-        team: 'res/maxon-team.png'
-    },
+    splash_bg: 'res/open-bg.png',
+    logo: 'res/maxon-team.png',
+    splash_music: 'res/sound/opening.mp3',
     ///////////////////
     mode: {
         board: 'res/mode-board.png',
@@ -128,7 +126,6 @@ var res = {
         game_over: 'res/sound/game_over.mp3',
         button: 'res/sound/button.mp3',
         menu: 'res/sound/menu.mp3',
-        opening: 'res/sound/opening.mp3',
         enemyDied: 'res/sound/enemyDied.mp3',
         magnet: 'res/sound/magnet.mp3',
         lose_prop: 'res/sound/lose_prop.mp3',
