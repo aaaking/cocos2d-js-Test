@@ -36,20 +36,20 @@ var LoginLayer = cc.Layer.extend({
         textField.setTouchEnabled(true);
         textField.fontName = "Helvetica";
         textField.fontSize = 25;
-        textField.setPlaceHolder("请输入昵称^_^");
+        textField.setPlaceHolder("😝请输入昵称😄");
         textField.x = winsize.width / 2 + 50;
         textField.y = winsize.height;
         this.addChild(textField);
 
-        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width / 2 + 50, winsize.height / 2 - 5)).easing(cc.easeElasticOut());
+        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width / 2 + 50, winsize.height / 2 + 5)).easing(cc.easeElasticOut());
         textField.runAction(actionTo);
 
         this.done = new cc.Menu(new cc.MenuItemSprite(
-            new cc.Sprite(res.info.done),
-            new cc.Sprite(res.info.done),
+            new cc.Sprite(res.login_done),
+            new cc.Sprite(res.login_done),
             function () {
                 var username = textField.getString();
-                sys.localStorage.setItem("username", username);
+                cc.sys.localStorage.setItem("username", username);
                 cc.director.runScene(new WelcomeScene());
             }.bind(this), this));
         this.done.setPosition(cc.p(winsize.width / 2 + 120, winsize.height));

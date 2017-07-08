@@ -1,16 +1,13 @@
 var res = {
     logo: 'res/logo.png',
     login_bg: 'res/menu-bg.png',
-    login_board: 'res/info-board.png',
+    login_board: 'res/login_board.png',
+    login_done: 'res/login_done.png',
     ///////////////////
     mode: {
         board: 'res/mode-board.png',
         mode1: 'res/mode1.png',
         mode2: 'res/mode2.png'
-    },
-
-    info: {
-        done: 'res/done.png'
     },
 
     rank: {
