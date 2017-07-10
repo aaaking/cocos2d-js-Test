@@ -205,7 +205,7 @@ var StatisticsLayer = cc.LayerColor.extend(/**@lends StatisticsLayer# */{
         this.menuBtn.runAction(cc.Sequence.create(
             cc.MoveTo.create(0.7, cc.p(-300, winSize.height / 2 - 165)).easing(cc.easeElasticInOut(0.45)),
             cc.CallFunc.create(function () {
-                cc.director.replaceScene(new WelcomeScene());
+                cc.director.runScene(new WelcomeScene());
             }.bind(this))));
         //play button effect
         cc.audioEngine.playEffect(res.sound.button);
