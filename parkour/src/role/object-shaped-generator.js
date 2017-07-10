@@ -138,7 +138,7 @@ var ObjectShapedGenerator = cc.Class.extend({
         this.py = platform.getY();
         var randType = parseInt(Math.random() * 7);
         //this.create(randType, platform);
-        if (this.layer.player.sprite.getPositionX() - this.gold[0].getX() > 800) {
+        if (this.layer.player && this.layer.player.sprite && this.layer.player.sprite.getPositionX() - this.gold[0].getX() > 800) {
             this.create(randType, platform);
         }
     },

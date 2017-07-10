@@ -38,9 +38,6 @@ var PlayLayer = cc.Layer.extend(/** @lends PlayLayer# */{
         var goldGenerator = new ObjectShapedGenerator(this);
 
         this.platformGenerator = new PlatformGenerator(this, true);
-        if (deleteLabel) {
-            return;
-        }
         this.invGenerators = [
             goldGenerator,
             // double jump shoe
@@ -63,6 +60,9 @@ var PlayLayer = cc.Layer.extend(/** @lends PlayLayer# */{
                 };
             }(), {height: 170, gap: 800}),
         ];
+        if (deleteLabel) {
+            return;
+        }
 
         // the player is the center of the screen.
         var player = this.player = new Hero(winSize.width / 2, winSize.height / 2);
