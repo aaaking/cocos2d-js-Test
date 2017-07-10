@@ -228,14 +228,34 @@ var TexasController = cc.Layer.extend({
 	},
 
 	initUI: function (param) {
-
-		this.bg = cc.Sprite.create("res/bg_"+app.gameMode+".jpg");
+		var winSize = cc.winSize;
+		var bgWidth = 858;
+        this.bg = new cc.LayerColor(cc.color(87,132,152, 100), bgWidth, winSize.height);
+        bgColorNormal = cc.color(87,132,152, 100);
+        bgColorSng = cc.color(102,161,106, 100);
+        bgColorMTT = cc.color(193,139,172, 100);
+        bgColorPineapple = cc.color(76,141,139, 100);
+        this.setBgColor();
+		// this.bg = cc.Sprite.create("res/bg_"+app.gameMode+".jpg");
 		this.addChild(this.bg);
-		this.bg.setAnchorPoint(cc.p(0.5, 0.5));
-		this.bg.setPosition(cc.p(display.cx, display.cy));
+		// this.bg.setAnchorPoint(cc.p(0.5, 0.5));
+		this.bg.setPosition(cc.p(winSize.width / 2 - bgWidth / 2, 0));
 		this.initSeatViews();
-
 	},
+
+	setBgColor: function () {
+        if (app.play_mode == 0 || app.play_mode == 1) {//德州0 奥马哈1
+            if (app.gameMode == 0) {//普通局
+                this.bg.setColor(cc.color(87,132,152, 100));
+            } else if (app.gameMode == 1) {//sng
+                this.bg.setColor(cc.color(102,161,106, 100));
+            } else if (app.gameMode == 2) {//mtt
+                this.bg.setColor(cc.color(193,139,172, 100));
+            }
+        } else if (app.play_mode == 2) {//大菠萝
+            this.bg.setColor(cc.color(76,141,139, 100));
+        }
+    },
 
 	removeSeatViews: function () {
 		if (!this.seatViews) {
@@ -570,7 +590,8 @@ var TexasController = cc.Layer.extend({
 	onSheetInfo: function (event) {
 
 		var msg = event.netmsg || {};
-		this.bg.setTexture("res/bg_"+app.gameMode+".jpg");
+		// this.bg.setTexture("res/bg_"+app.gameMode+".jpg");
+        this.setBgColor();
 		var playerinfo = msg.playerinfo || {};
 		var noAni = event.noAni;
 		if (!msg.maxplayer || msg.maxplayer == 0) {

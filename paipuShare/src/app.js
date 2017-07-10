@@ -1,9 +1,15 @@
 app = {}
 app.userInfo = {}
 app.gameMode = 0
+app.play_mode = 0
 app.userInfo.tableid = "123456"
 app.userInfo.token = 0
 app.userInfo.seatid = 2
+
+bgColorNormal = null;
+bgColorSng = null;
+bgColorMTT = null;
+bgColorPineapple = null;
 
 display = {}
 
