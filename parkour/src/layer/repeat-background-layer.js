@@ -13,7 +13,6 @@ var RepeatBackgroundLayer = cc.Layer.extend(/** @lends RepeatBackgroundLayer# */
         }
         camera.addListener(function (pos) {
             var eyeX = pos.x, eyeY = pos.y;
-            console.log("循环背景eyeX：" + eyeX);
             self.refresh(eyeX / options.scaleX, eyeY / options.scaleY);
             self.setPosition(cc.p(-eyeX / options.scaleX, -eyeY / options.scaleY));
         });
