@@ -24,6 +24,8 @@ var res = {
     platform_png: 'res/platform.png',
     redshoes_png: 'res/redshoes.png',
     redshoes_plist: 'res/redshoes.plist',
+    spring_png: 'res/spring.png',
+    spring_plist: 'res/spring.plist',
     ///////////////////
 
     rank: {
@@ -52,12 +54,6 @@ var res = {
     bird : {
         png: 'res/bird.png',
         plist: 'res/bird.plist'
-    },
-
-    //spring
-    spring: {
-        png: 'res/spring.png',
-        plist: 'res/spring.plist'
     },
 
     //particle
