@@ -12,11 +12,6 @@ var res = {
     on: 'res/on.png',
     off: 'res/off.png',
     ///////////////////
-    mode: {
-        board: 'res/mode-board.png',
-        mode1: 'res/mode1.png',
-        mode2: 'res/mode2.png'
-    },
 
     rank: {
         board: 'res/rank-board.png'
