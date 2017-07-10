@@ -15,6 +15,8 @@ var res = {
     near_bg: 'res/near-bg.png',
     gold_plist: 'res/gold.plist',
     gold_png: 'res/gold.png',
+    shoes_png: 'res/shoes.png',
+    shoes_plist: 'res/shoes.plist',
     ///////////////////
 
     rank: {
@@ -62,12 +64,6 @@ var res = {
     spring: {
         png: 'res/spring.png',
         plist: 'res/spring.plist'
-    },
-
-    //shoes
-    shoes: {
-        png: 'res/shoes.png',
-        plist: 'res/shoes.plist'
     },
 
     //red shoes

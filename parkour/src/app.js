@@ -41,7 +41,7 @@ var SplashLayer = cc.Layer.extend({
         cc.spriteFrameCache.addSpriteFrames(res.platform.plist);
         cc.spriteFrameCache.addSpriteFrames(res.panda_plist, res.panda_png);
         // cc.spriteFrameCache.addSpriteFrames(res.panda.plist);
-        cc.spriteFrameCache.addSpriteFrames(res.shoes.plist);
+        cc.spriteFrameCache.addSpriteFrames(res.shoes_plist);
         cc.spriteFrameCache.addSpriteFrames(res.redshoes.plist);
         cc.spriteFrameCache.addSpriteFrames(res.spring.plist);
         cc.spriteFrameCache.addSpriteFrames(res.bird.plist);
