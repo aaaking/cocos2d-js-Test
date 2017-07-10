@@ -346,6 +346,9 @@ var GameModeLayer = cc.Layer.extend({
         //层透明度
         layer.opacity = 200;
         modeBoard.addChild(layer);
+        modeBoard.setPosition(cc.p(0, winsize.height));
+        var actionTo = cc.MoveTo.create(0.8, cc.p(0, 0)).easing(cc.easeElasticOut());
+        modeBoard.runAction(actionTo);
         this.draw.addChild(modeBoard);
 
         var modeDesc = new cc.LabelTTF("请选择模式", "Arial", 30);
