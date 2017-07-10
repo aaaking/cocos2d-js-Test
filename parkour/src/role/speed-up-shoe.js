@@ -38,7 +38,7 @@ var SpeedUpShoe = cc.Class.extend({
             this.speedUp = speedUp;
         }
 
-        this.spriteSheet = new cc.SpriteBatchNode(res.redshoes.png);
+        this.spriteSheet = new cc.SpriteBatchNode(res.redshoes_png);
 
         this.rotatingAction = new cc.RepeatForever(new cc.Animate(
             new cc.Animation([0, 1, 2, 3, 4].map(function (i) {
@@ -48,7 +48,7 @@ var SpeedUpShoe = cc.Class.extend({
         this.rotatingAction.retain();
 
         // this.sprite = new cc.PhysicsSprite("#redshoes_00.png");
-        this.sprite = new cc.Sprite("#redshoes_00.png");
+        this.sprite = new cc.PhysicsSprite("#redshoes_00.png");
         this.sprite.setScale(0.4);
         this.spriteSheet.addChild(this.sprite);
         this.sprite.runAction(this.rotatingAction);
@@ -56,19 +56,19 @@ var SpeedUpShoe = cc.Class.extend({
         this.spriteSheet.retain();
 
         //physics
-        // var contentSize = this.sprite.getContentSize();
-        // var radius = 0.95 * this.sprite.getContentSize().width / 4;
-        // var body = new cp.Body(0.1, cp.momentForBox(Number.POSITIVE_INFINITY, contentSize.width, contentSize.height));
-        // body.applyForce(cp.v(0, 150), cp.v(0, 0));
-        // body.setPos(cc.p(posX, posY));
-        // body.spriteObj = this;
-        // this.sprite.setBody(body);
-        // this.body = body;
-        //
-        // this.shape = new cp.CircleShape(body, radius, cp.vzero);
-        // this.shape.setCollisionType(SpriteTag.inventory);
-        // //Sensors only call collision callbacks, and never generate real collisions
-        // this.shape.setSensor(true);
+        var contentSize = this.sprite.getContentSize();
+        var radius = 0.95 * this.sprite.getContentSize().width / 4;
+        var body = new cp.Body(0.1, cp.momentForBox(Number.POSITIVE_INFINITY, contentSize.width, contentSize.height));
+        body.applyForce(cp.v(0, 150), cp.v(0, 0));
+        body.setPos(cc.p(posX, posY));
+        body.spriteObj = this;
+        this.sprite.setBody(body);
+        this.body = body;
+
+        this.shape = new cp.CircleShape(body, radius, cp.vzero);
+        this.shape.setCollisionType(SpriteTag.inventory);
+        //Sensors only call collision callbacks, and never generate real collisions
+        this.shape.setSensor(true);
     },
 
     /**
@@ -79,8 +79,8 @@ var SpeedUpShoe = cc.Class.extend({
         this.layer = layer;
         layer.addChild(this.spriteSheet, 5);
 
-        // this.space = space;
-        // space.addShape(this.shape);
+        this.space = space;
+        space.addShape(this.shape);
     },
 
     /**

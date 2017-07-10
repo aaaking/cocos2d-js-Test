@@ -22,6 +22,8 @@ var res = {
     magnet_effect: 'res/magnetEffect.png',
     platform_plist: 'res/platform.plist',
     platform_png: 'res/platform.png',
+    redshoes_png: 'res/redshoes.png',
+    redshoes_plist: 'res/redshoes.plist',
     ///////////////////
 
     rank: {
@@ -56,12 +58,6 @@ var res = {
     spring: {
         png: 'res/spring.png',
         plist: 'res/spring.plist'
-    },
-
-    //red shoes
-    redshoes: {
-        png: 'res/redshoes.png',
-        plist: 'res/redshoes.plist'
     },
 
     //particle
