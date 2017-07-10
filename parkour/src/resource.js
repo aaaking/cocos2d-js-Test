@@ -20,6 +20,8 @@ var res = {
     magnet_png: 'res/magnet.png',
     magnet_plist: 'res/magnet.plist',
     magnet_effect: 'res/magnetEffect.png',
+    platform_plist: 'res/platform.plist',
+    platform_png: 'res/platform.png',
     ///////////////////
 
     rank: {
@@ -36,12 +38,6 @@ var res = {
         wait: 'res/wait.png',
         enable: 'res/enable.png',
         disable: 'res/disable.png'
-    },
-
-    // Platform Related.
-    platform: {
-        plist: 'res/platform.plist',
-        png: 'res/platform.png'
     },
 
     //enemy

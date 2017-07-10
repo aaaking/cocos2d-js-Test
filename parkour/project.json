@@ -19,6 +19,8 @@
     "src/scenePlay.js",
     "src/layer/repeat-background-layer.js",
     "src/layer/play-layer.js",
+    "src/layer/hub-layer.js",
+    "src/layer/statistics-layer.js",
     "src/role/object-shaped-generator.js",
     "src/role/gold.js",
     "src/role/platform-generator.js",

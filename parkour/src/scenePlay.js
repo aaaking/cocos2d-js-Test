@@ -196,7 +196,6 @@ var PlayScene = cc.Scene.extend(/** @lends PlayScene# */{
     onEnter: function () {
         this._super();
         var winSize = cc.director.getWinSize();
-        var deleteLabel = new cc.LabelTTF("游戏play界面", "", 70);
         // the initial variables.
         var space = this.space = this._initSpace();
         var camera = this.camera = this._initCamera();
@@ -220,11 +219,6 @@ var PlayScene = cc.Scene.extend(/** @lends PlayScene# */{
 
         var playLayer = this.playLayer = new PlayLayer(camera, space, statistics, settings);
         this.addChild(playLayer);
-        if (deleteLabel) {
-            this.scheduleUpdate();
-            return;
-        }
-
         var hubLayer = this.hubLayer = new HubLayer(playLayer.player, statistics, settings, camera);
         this.addChild(hubLayer);
 
