@@ -356,7 +356,7 @@ var GameModeLayer = cc.Layer.extend({
         modeBoard.addChild(modeDesc);
 
         var modeOneFont = new cc.MenuItemFont("休闲模式", function () {
-            console.log("点击休闲模式");
+            this.relaxMode();
         }, this);
         modeOneFont.setFontSize(45);
         var modeOne = new cc.Menu(modeOneFont);
@@ -364,7 +364,7 @@ var GameModeLayer = cc.Layer.extend({
         modeBoard.addChild(modeOne);
 
         var modeTwoFont = new cc.MenuItemFont("团队模式", function () {
-            console.log("点击休闲模式");
+            this.relayMode();
         }, this);
         modeTwoFont.setFontSize(45);
         var modeTwo = new cc.Menu(modeTwoFont);

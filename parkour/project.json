@@ -16,6 +16,7 @@
     "src/resource.js",
     "src/sceneLogin.js",
     "src/sceneWelcome.js",
+    "src/scenePlay.js",
     "src/app.js"
   ]
 }
