@@ -1,0 +1,249 @@
+{
+  "ID": "fe8ead20-5d5d-483f-9f23-cffdc4ef9eef",
+  "Version": "3.10.0.0",
+  "Name": "allin",
+  "Content": {
+    "Content": {
+      "Animation": {
+        "Duration": 56,
+        "Speed": 1.0,
+        "Timelines": [
+          {
+            "ActionTag": 1469145318,
+            "Property": "FileData",
+            "Frames": [
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_1.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 0,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_10.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 4,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_11.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 8,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_12.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 12,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_13.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 16,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_14.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 20,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_15.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 24,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_2.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 28,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_3.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 32,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_4.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 36,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_5.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 40,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_6.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 44,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_7.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 48,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_8.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 52,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              },
+              {
+                "TextureFile": {
+                  "Type": "Normal",
+                  "Path": "allin_9.png",
+                  "Plist": ""
+                },
+                "FrameIndex": 56,
+                "Tween": false,
+                "ctype": "TextureFrameData"
+              }
+            ],
+            "ctype": "TimelineData"
+          }
+        ],
+        "ctype": "TimelineActionData"
+      },
+      "AnimationList": [],
+      "ObjectData": {
+        "Tag": 87,
+        "Children": [
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "allin_7.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "PreSize": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "LeftMargin": -23.0,
+            "RightMargin": -23.0,
+            "TopMargin": -23.0,
+            "BottomMargin": -23.0,
+            "Tag": 89,
+            "ActionTag": 1469145318,
+            "Size": {
+              "X": 128.0,
+              "Y": 128.0
+            },
+            "Name": "Sprite_2",
+            "ctype": "SpriteObjectData"
+          }
+        ],
+        "Size": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Name": "Node",
+        "ctype": "SingleNodeObjectData"
+      },
+      "UsedResources": [
+        "allin_1.png",
+        "allin_10.png",
+        "allin_11.png",
+        "allin_12.png",
+        "allin_13.png",
+        "allin_14.png",
+        "allin_15.png",
+        "allin_2.png",
+        "allin_3.png",
+        "allin_4.png",
+        "allin_5.png",
+        "allin_6.png",
+        "allin_7.png",
+        "allin_8.png",
+        "allin_9.png"
+      ],
+      "ctype": "GameFileData"
+    }
+  },
+  "Type": "Node"
+}

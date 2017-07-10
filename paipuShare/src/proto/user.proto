@@ -1,0 +1,209 @@
+//-- 代码风格
+//--消息名：使用骆驼风格的大小写命名，即单词首字母大写
+//--字段名：全部小写
+//--枚举名：使用骆驼风格的大小写命名
+//--枚举值：全部大写，使用下划线分隔
+
+
+
+package user;
+
+
+
+
+
+
+
+
+message PlayerInfo {
+	required int32 uid = 1;
+	required int32 gold = 3;
+	optional int32 seatid = 2;
+	optional int32 bet = 4;
+	optional int32 playing = 5;   		//0.不在游戏 1.正在游戏 2.已经弃牌
+	repeated uint32 handCards = 6;
+	optional uint32 premium = 7;
+}
+
+
+
+
+
+
+
+
+//站起广播
+message StandupNtf {
+	required uint32 uid = 1;
+	required uint32 seatid = 2;
+}
+
+message PlayerInfo {
+	required int32 uid = 1;
+	required int32 gold = 3;
+	optional int32 seatid = 2;
+	optional int32 bet = 4;
+	optional int32 playing = 5;   		//0.不在游戏 1.正在游戏 2.已经弃牌
+	repeated uint32 handCards = 6;
+	optional uint32 premium = 7;
+}
+
+
+message GameStartNtf {
+	repeated PlayerInfo playerinfo = 1;
+	optional int32 btn_seatid = 2;
+	optional uint32 hands_cnt = 3;
+}
+
+message HandCard {
+	required int32 seatid = 1;
+	repeated int32 handcard = 2;
+}
+
+message AddCardNtf {
+	required int32 seatid = 1;
+	repeated int32 cards = 2;
+}
+
+
+//玩家操作通知
+message PlayerOptNtf {
+	required uint32 seatid = 1;
+	optional uint32 timeout = 2;
+	optional uint32 end_time = 3;
+	optional uint32 call_bet = 4;
+	optional uint32 min_raise = 5;
+}
+
+
+
+
+message BetNtf {
+	required uint32 seatid = 1;
+	optional uint32 totalbet = 2;
+	optional uint32 gold = 3;
+}
+
+//底池更新
+message PoolBetNtf {
+	repeated PoolBet poolbet = 1;
+}
+
+//公共牌
+message PoolCardsNtf {
+	repeated uint32 cards = 2;
+}
+
+
+
+message FoldNtf {
+	required uint32 seatid = 1;
+}
+
+
+message ShowCardsNtf {
+	
+	repeated HandCard handcards = 1;
+}
+
+
+message GameEndNtf {
+	message Winner {
+		required int32 seatid = 1;
+		required int32 bonus = 2;
+	}
+	message PotWinners {
+		repeated Winner pot_winners = 1;
+	}
+
+	message Player {
+		required uint32 seatid = 1;
+		required uint32 gold = 2;
+		optional uint32 win = 3;
+		optional uint32 bonus = 4;
+		optional int32 profit = 5;
+	}
+
+	repeated PotWinners winners = 1;
+	repeated Player players = 2;
+}
+
+//进入保险模式
+message EnterInsureNtf {
+}
+
+//购买保险
+message AskInsureNtf {
+	message PotInsure {
+		optional uint32 pot_num = 1;
+		required uint32 outs_cnt = 2;
+		required float  rate = 3;
+		required uint32 max_premium = 4;
+		required uint32 guaranteed = 5;
+	}
+	message PlayerInsured {
+		required uint32 seatid = 1;
+		repeated PotInsure pot_insures = 2;
+	}
+
+	repeated PlayerInsured players_insured = 1;
+	optional uint32 timeout = 2;
+	optional uint32 end_time = 3;
+	optional uint32 mode = 4;
+}
+
+
+
+
+message InsureNtf {
+	required int32 seatid = 1;
+	required int32 premium = 2;
+}
+
+message PayInsuranceNtf {
+	message Insurance {
+		optional uint32 seatid = 1;
+		optional uint32 insurance = 2;
+		optional uint32 no_loss = 3;
+		repeated uint32 loss_seatids = 4;
+	}
+
+	repeated Insurance insurance = 1;
+}
+
+
+
+
+
+
+
+
+
+message InitiativeShowCardsNtf {
+	message card {
+		required uint32 card_order = 1;
+		required uint32 card_num = 2;
+	}
+
+	repeated card cards = 1;
+	required uint32 seatid = 2;
+}
+
+
+
+
+//牌谱信息(客户端存储牌谱使用)
+message SheetInfo {
+	message PlayerInfo {
+		required uint32 uid = 1;
+		required uint32 seatid = 2;
+		required uint32 gold = 3;
+		optional bytes  nickname = 4;
+		optional bytes  avatar = 5;
+	}
+	
+	repeated PlayerInfo playerinfo = 1;
+}
+
+
+
