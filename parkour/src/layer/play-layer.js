@@ -32,9 +32,6 @@ var PlayLayer = cc.Layer.extend(/** @lends PlayLayer# */{
         });
 
         var deleteLabel = new cc.LabelTTF("play-player", "", 70);
-        deleteLabel.setPosition(winSize.width / 2, winSize.height / 2 - 300);
-        deleteLabel.setColor(cc.color.RED);
-        this.addChild(deleteLabel);
         var goldGenerator = new ObjectShapedGenerator(this);
 
         this.platformGenerator = new PlatformGenerator(this, true);

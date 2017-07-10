@@ -197,8 +197,6 @@ var PlayScene = cc.Scene.extend(/** @lends PlayScene# */{
         this._super();
         var winSize = cc.director.getWinSize();
         var deleteLabel = new cc.LabelTTF("游戏play界面", "", 70);
-        deleteLabel.setPosition(winSize.width / 2, winSize.height / 2);
-        this.addChild(deleteLabel);
         // the initial variables.
         var space = this.space = this._initSpace();
         var camera = this.camera = this._initCamera();
