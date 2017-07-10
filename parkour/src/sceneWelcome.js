@@ -310,7 +310,7 @@ var GameModeLayer = cc.Layer.extend({
 
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
-            swallowTouches: false,
+            swallowTouches: true,
             target: this.draw,
             onTouchBegan: function () {
                 return true;
@@ -347,7 +347,7 @@ var GameModeLayer = cc.Layer.extend({
         layer.opacity = 200;
         modeBoard.addChild(layer);
         modeBoard.setPosition(cc.p(0, winsize.height));
-        var actionTo = cc.MoveTo.create(0.8, cc.p(0, 0)).easing(cc.easeElasticOut());
+        var actionTo = cc.MoveTo.create(0.5, cc.p(0, 0)).easing(cc.easeElasticOut());
         modeBoard.runAction(actionTo);
         this.draw.addChild(modeBoard);
 
@@ -398,5 +398,147 @@ var GameModeLayer = cc.Layer.extend({
 
     relayMode: function () {
         cc.director.runScene(new NetworkPlayScene());
+    }
+});
+
+var RankLayer = cc.Layer.extend({
+    ctor: function () {
+        this._super();
+        var winsize = cc.director.getWinSize();
+        var rankNo = "";
+        var rankName = "";
+        var rankScore = "";
+        //create black background
+        this.draw = new cc.DrawNode();
+        this.draw.drawRect(cc.p(0, winsize.height), cc.p(winsize.width, 0), cc.color(0, 0, 0, 80), 0, cc.color(0, 0, 0, 80));
+        this.addChild(this.draw, 4, 1);
+
+        //disabled touch
+        cc.eventManager.addListener({
+            event: cc.EventListener.TOUCH_ONE_BY_ONE,
+            swallowTouches: true,
+            target: this.draw,
+            onTouchBegan: function () {
+                return true;
+            },
+            onTouchEnded: function () {
+                this.target.removeFromParent();
+            }
+        }, this.draw);
+
+        //图层定位,以屏幕中心偏移
+        var offsetX = 0;
+        var offsetY = 0;
+        //图层大小
+        var clipWidth = 550;
+        var clipHeight = 650;
+        //圆角半径
+        var radius = 25;
+        //圆角层实现代码
+        var size = cc.winSize;
+        var stencil = new cc.DrawNode();
+        stencil.drawRect(cc.p((size.width - clipWidth) / 2 + offsetX, (size.height - clipHeight) / 2 + offsetY + radius), cc.p(size.width / 2 + clipWidth / 2 + offsetX, size.height / 2 + clipHeight / 2 + offsetY - radius), cc.color(0, 0, 0), 1, cc.color(0, 0, 0));
+        stencil.drawRect(cc.p((size.width - clipWidth) / 2 + offsetX + radius, (size.height - clipHeight) / 2 + offsetY), cc.p(size.width / 2 + clipWidth / 2 + offsetX - radius, size.height / 2 + clipHeight / 2 + offsetY), cc.color(0, 0, 0), 1, cc.color(0, 0, 0));
+        stencil.drawCircle(cc.p(size.width / 2 - clipWidth / 2 + offsetX + radius, size.height / 2 - clipHeight / 2 + offsetY + radius), radius / 3, 0, 100, false, radius, cc.color(0, 0, 0));
+        stencil.drawCircle(cc.p(size.width / 2 + clipWidth / 2 + offsetX - radius, size.height / 2 - clipHeight / 2 + offsetY + radius), radius / 3, 0, 100, false, radius, cc.color(0, 0, 0));
+        stencil.drawCircle(cc.p(size.width / 2 + clipWidth / 2 + offsetX - radius, size.height / 2 + clipHeight / 2 + offsetY - radius), radius / 3, 0, 100, false, radius, cc.color(0, 0, 0));
+        stencil.drawCircle(cc.p(size.width / 2 - clipWidth / 2 + offsetX + radius, size.height / 2 + clipHeight / 2 + offsetY - radius), radius / 3, 0, 100, false, radius, cc.color(0, 0, 0));
+        var rankBoard = new cc.ClippingNode();
+        rankBoard.stencil = stencil;
+        //层颜色
+        var layer = new cc.LayerColor(cc.color.YELLOW, clipWidth, clipHeight);
+        layer.x = (size.width - clipWidth) / 2 + offsetX;
+        layer.y = (size.height - clipHeight) / 2 + offsetY;
+        //层透明度
+        layer.opacity = 200;
+        rankBoard.addChild(layer);
+        rankBoard.setPosition(cc.p(0, winsize.height));
+        var actionTo = cc.MoveTo.create(0.5, cc.p(0, 0)).easing(cc.easeElasticOut());
+        rankBoard.runAction(actionTo);
+        this.draw.addChild(rankBoard);
+
+        var myRankDesc = new cc.LabelTTF("我的排名: ", "Arial", 30);
+        myRankDesc.setFontFillColor(cc.color.WHITE);
+        myRankDesc.setPosition(cc.p(winsize.width / 2 - 40, winsize.height));
+        this.draw.addChild(myRankDesc, 13);
+        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width / 2 - 40, winsize.height / 2 + clipHeight / 2 - 60)).easing(cc.easeElasticOut());
+        myRankDesc.runAction(actionTo);
+        this.myRank = new cc.LabelTTF("0", "Helvetica", 30);
+        this.myRank.setColor(cc.color.RED);// white color
+        this.myRank.setPosition(cc.p(winsize.width / 2 + 40, winsize.height));
+        this.draw.addChild(this.myRank, 13);
+        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width / 2 + 40, winsize.height / 2 + clipHeight / 2 - 60)).easing(cc.easeElasticOut());
+        this.myRank.runAction(actionTo);
+
+        //get data from server
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                var data = JSON.parse(xhr.responseText);
+                var darr = data.score;
+                console.log(darr);
+                for (var i = 0; i < darr.length; i++) {
+                    rankName += darr[i][0] + "\n";
+                    rankScore += darr[i][1] + "\n";
+                }
+                var j = i;
+                for (var i = 1; i <= j; i++) {
+                    rankNo += i + "\n";
+                }
+                this.allRankName.setString(rankName);
+                this.allRankScore.setString(rankScore);
+                this.allRankNo.setString(rankNo);
+
+                //get my rank
+                var username = sys.localStorage.getItem("username");
+                for (var i = 0; i < darr.length; i++) {
+                    if (darr[i][0] == username) {
+                        this.myRank.setString(darr[i][1]);
+                        break;
+                    }
+                }
+            }
+        }.bind(this);
+
+        xhr.open('GET', 'http://endless-journey-server.coding.io/game/scores', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        var username = cc.sys.localStorage.getItem("username");
+        xhr.send(null);
+
+        /*
+         * all ranking data
+         *
+         */
+        //
+        for (var i = 1; i <= 10; i++) {
+            rankNo += i + "\n";
+            rankName += "载入中\n";
+            rankScore += 0 + "\n";
+        }
+
+        this.allRankNo = new cc.LabelTTF(rankNo, "Helvetica", 50);
+        this.allRankNo.setColor(cc.color(10, 129, 145));// white color
+        this.allRankNo.setPosition(cc.p(winsize.width / 4 + 95, winsize.height));
+        this.allRankNo.setScale(0.4);
+        this.draw.addChild(this.allRankNo, 13);
+        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width / 4 + 95, winsize.height / 2 - 50)).easing(cc.easeElasticOut());
+        this.allRankNo.runAction(actionTo);
+
+        this.allRankName = new cc.LabelTTF(rankName, "Helvetica", 50);
+        this.allRankName.setColor(cc.color(10, 129, 145));// white color
+        this.allRankName.setPosition(cc.p(winsize.width / 4 + 200, winsize.height));
+        this.allRankName.setScale(0.4);
+        this.draw.addChild(this.allRankName, 13);
+        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width / 4 + 200, winsize.height / 2 - 50)).easing(cc.easeElasticOut());
+        this.allRankName.runAction(actionTo);
+
+        this.allRankScore = new cc.LabelTTF(rankScore, "Helvetica", 50);
+        this.allRankScore.setColor(cc.color(10, 129, 145));// white color
+        this.allRankScore.setPosition(cc.p(winsize.width / 4 + 305, winsize.height));
+        this.allRankScore.setScale(0.4);
+        this.draw.addChild(this.allRankScore, 13);
+        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width / 4 + 305, winsize.height / 2 - 50)).easing(cc.easeElasticOut());
+        this.allRankScore.runAction(actionTo);
+
     }
 });
