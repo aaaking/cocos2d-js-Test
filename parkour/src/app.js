@@ -45,7 +45,7 @@ var SplashLayer = cc.Layer.extend({
         cc.spriteFrameCache.addSpriteFrames(res.redshoes_plist);
         cc.spriteFrameCache.addSpriteFrames(res.spring_plist);
         cc.spriteFrameCache.addSpriteFrames(res.bird_plist);
-        cc.spriteFrameCache.addSpriteFrames(res.enemy.plist);
+        cc.spriteFrameCache.addSpriteFrames(res.enemy_plist);
         cc.spriteFrameCache.addSpriteFrames(res.magnet_plist);
 
         //load image to memory

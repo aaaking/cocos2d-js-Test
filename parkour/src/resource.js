@@ -28,6 +28,8 @@ var res = {
     spring_plist: 'res/spring.plist',
     bird_png: 'res/bird.png',
     bird_plist: 'res/bird.plist',
+    enemy_png: 'res/enemy.png',
+    enemy_plist: 'res/enemy.plist',
     ///////////////////
 
     rank: {
@@ -44,12 +46,6 @@ var res = {
         wait: 'res/wait.png',
         enable: 'res/enable.png',
         disable: 'res/disable.png'
-    },
-
-    //enemy
-    enemy: {
-        png: 'res/enemy.png',
-        plist: 'res/enemy.plist'
     },
 
     //particle
