@@ -54,6 +54,7 @@ var RepeatBackgroundLayer = cc.Layer.extend(/** @lends RepeatBackgroundLayer# */
             var winSize = cc.winSize;
             pos = pos || cc.p(0, 0);
             var bg = new cc.Sprite(res);
+            bg.setScaleY(winSize.height / bg.height);
             bg.setPosition(pos);
             bg.attr({
                 width: winSize.width,
