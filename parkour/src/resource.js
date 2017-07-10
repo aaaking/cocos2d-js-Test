@@ -26,6 +26,8 @@ var res = {
     redshoes_plist: 'res/redshoes.plist',
     spring_png: 'res/spring.png',
     spring_plist: 'res/spring.plist',
+    bird_png: 'res/bird.png',
+    bird_plist: 'res/bird.plist',
     ///////////////////
 
     rank: {
@@ -48,12 +50,6 @@ var res = {
     enemy: {
         png: 'res/enemy.png',
         plist: 'res/enemy.plist'
-    },
-
-    //bird
-    bird : {
-        png: 'res/bird.png',
-        plist: 'res/bird.plist'
     },
 
     //particle
