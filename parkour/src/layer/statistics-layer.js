@@ -29,7 +29,7 @@ var StatisticsLayer = cc.LayerColor.extend(/**@lends StatisticsLayer# */{
         cc.MenuItemFont.setFontSize(30);
 
         //score board
-        this.board = new cc.Sprite(res.over.board);
+        this.board = new cc.Sprite(res.board);
         this.board.attr({
             x: winSize.width + 100,
             y: winSize.height / 2,
@@ -68,8 +68,8 @@ var StatisticsLayer = cc.LayerColor.extend(/**@lends StatisticsLayer# */{
         this.addChild(this.labelScore);
 
         this.restartBtn = new cc.Menu(new cc.MenuItemSprite(
-            new cc.Sprite(res.over.reload),
-            new cc.Sprite(res.over.reload),
+            new cc.Sprite(res.reload),
+            new cc.Sprite(res.reload),
             this.onRestart, this));
         this.restartBtn.setPosition(cc.p(winSize.width + 100, 60));
         this.restartBtn.attr({
@@ -83,8 +83,8 @@ var StatisticsLayer = cc.LayerColor.extend(/**@lends StatisticsLayer# */{
         this.addChild(this.restartBtn, 1);
 
         this.storeBtn = new cc.Menu(new cc.MenuItemSprite(
-            new cc.Sprite(res.over.store),
-            new cc.Sprite(res.over.store),
+            new cc.Sprite(res.store),
+            new cc.Sprite(res.store),
             this.onUpload, this));
         this.storeBtn.setPosition(cc.p(winSize.width + 100, 60));
         this.storeBtn.attr({
@@ -98,8 +98,8 @@ var StatisticsLayer = cc.LayerColor.extend(/**@lends StatisticsLayer# */{
         this.addChild(this.storeBtn, 1);
 
         this.menuBtn = new cc.Menu(new cc.MenuItemSprite(
-            new cc.Sprite(res.over.menu),
-            new cc.Sprite(res.over.menu),
+            new cc.Sprite(res.menu_png),
+            new cc.Sprite(res.menu_png),
             this.onMenu, this));
         this.menuBtn.setPosition(cc.p(winSize.width + 100, 60));
         this.menuBtn.attr({
@@ -252,7 +252,7 @@ var StatisticsLayer = cc.LayerColor.extend(/**@lends StatisticsLayer# */{
             },
         }, this.draw);
 
-        this.sboard = new cc.Sprite(res.ui.storeBoard);
+        this.sboard = new cc.Sprite(res.storeBoard);
         this.sboard.setPosition(cc.p(winsize.width / 2 + 300, winsize.height / 2));
         this.sboard.setScale(0.57);
         this.addChild(this.sboard, 5);
@@ -260,8 +260,8 @@ var StatisticsLayer = cc.LayerColor.extend(/**@lends StatisticsLayer# */{
         this.sboard.runAction(actionTo);
 
         this.backBtn = new cc.Menu(new cc.MenuItemSprite(
-            new cc.Sprite(res.ui.backBtn),
-            new cc.Sprite(res.ui.backBtn),
+            new cc.Sprite(res.back),
+            new cc.Sprite(res.back),
             this.backToMenu, this));
         this.backBtn.setPosition(cc.p(winsize.width + 100, 60));
         this.backBtn.attr({
@@ -284,8 +284,7 @@ var StatisticsLayer = cc.LayerColor.extend(/**@lends StatisticsLayer# */{
         this.labelCoins.runAction(cc.MoveTo.create(1, cc.p(winsize.width / 2 + 50, winsize.height / 2 + 128)).easing(cc.easeElasticOut()));
 
         this.buyMagnetBtn = new cc.Menu(new cc.MenuItemSprite(
-            new cc.Sprite(res.ui.buy30),
-            new cc.Sprite(res.ui.buy30),
+            new cc.Sprite(res.buy30),
             function () {
                 //buy magnet
                 if (this.totalCoin - 30 < 0) {
@@ -307,8 +306,8 @@ var StatisticsLayer = cc.LayerColor.extend(/**@lends StatisticsLayer# */{
         this.addChild(this.buyMagnetBtn, 6);
 
         this.buyShoesBtn = new cc.Menu(new cc.MenuItemSprite(
-            new cc.Sprite(res.ui.buy50),
-            new cc.Sprite(res.ui.buy50),
+            new cc.Sprite(res.buy50),
+            new cc.Sprite(res.buy50),
             function () {
                 //buy shoes
                 if (this.totalCoin - 50 < 0) {
@@ -330,8 +329,8 @@ var StatisticsLayer = cc.LayerColor.extend(/**@lends StatisticsLayer# */{
         this.addChild(this.buyShoesBtn, 6);
 
         this.buyRedshoesBtn = new cc.Menu(new cc.MenuItemSprite(
-            new cc.Sprite(res.ui.buy50),
-            new cc.Sprite(res.ui.buy50),
+            new cc.Sprite(res.buy50),
+            new cc.Sprite(res.buy50),
             function () {
                 //buy red shoes
                 if (this.totalCoin - 50 < 0) {

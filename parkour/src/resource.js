@@ -30,6 +30,13 @@ var res = {
     bird_plist: 'res/bird.plist',
     enemy_png: 'res/enemy.png',
     enemy_plist: 'res/enemy.plist',
+    storeBoard: 'res/ui/store-board.png',
+    buy30: 'res/ui/buy-30.png',
+    buy50: 'res/ui/buy-50.png',
+    store: 'res/ui/store.png',
+    board: 'res/ui/score-board.png',
+    reload: 'res/ui/reload.png',
+    menu_png: 'res/ui/menu.png',
     ///////////////////
 
     rank: {
@@ -59,14 +66,6 @@ var res = {
         plist: 'res/fire.plist'
     },
 
-    //game over res
-    over: {
-        board: 'res/ui/score-board.png',
-        store: 'res/ui/store.png',
-        reload: 'res/ui/reload.png',
-        menu: 'res/ui/menu.png'
-    },
-
     // Sound Effect
     sound:{
         bg_mp3: 'res/sound/bg.mp3',
@@ -93,9 +92,6 @@ var res = {
         distance: 'res/ui/distance.png',
         highBtn: 'res/ui/high-btn.png',
         lowBtn: 'res/ui/low-btn.png',
-        storeBoard: 'res/ui/store-board.png',
-        buy30: 'res/ui/buy-30.png',
-        buy50: 'res/ui/buy-50.png',
         magnetProp: 'res/ui/magnet-prop.png',
         shoesProp: 'res/ui/shoes-prop.png',
         redshoesProp: 'res/ui/redshoes-prop.png'
