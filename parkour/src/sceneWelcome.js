@@ -224,6 +224,7 @@ var WelcomeLayer = cc.Layer.extend({
             }
         }, this);
         this.draw.addChild(musicCheckBox);
+        //还有一个"难度"的设置，以后加上，diffDeg=1表示"难"，diffDeg=0表示容易
 
         //toggle //effect
         // var on = new cc.MenuItemImage(res.ui.onBtn);
