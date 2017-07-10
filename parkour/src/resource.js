@@ -9,6 +9,8 @@ var res = {
     about: 'res/about.png',
     panda_plist: 'res/panda.plist',
     panda_png: 'res/panda.png',
+    on: 'res/on.png',
+    off: 'res/off.png',
     ///////////////////
     mode: {
         board: 'res/mode-board.png',
@@ -129,9 +131,6 @@ var res = {
         soundOn: 'res/ui/soundOnBtn.png',
         soundOff: 'res/ui/soundOffBtn.png',
         distance: 'res/ui/distance.png',
-        setBoard: 'res/ui/set-board.png',
-        onBtn: 'res/ui/on-btn.png',
-        offBtn: 'res/ui/off-btn.png',
         highBtn: 'res/ui/high-btn.png',
         lowBtn: 'res/ui/low-btn.png',
         storeBoard: 'res/ui/store-board.png',

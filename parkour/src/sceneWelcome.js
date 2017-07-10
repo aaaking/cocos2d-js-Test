@@ -166,113 +166,85 @@ var WelcomeLayer = cc.Layer.extend({
         this.draw = new cc.DrawNode();
         this.draw.drawRect(cc.p(0, winsize.height), cc.p(winsize.width, 0), cc.color(0, 0, 0, 80), 0, cc.color(0, 0, 0, 80));
         this.addChild(this.draw, 4, 1);
-
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches: true,
+            target: this.draw,
             onTouchBegan: function () {
                 return true;
             },
+            onTouchEnded: function () {
+                this.target.removeFromParent();
+            }
         }, this.draw);
 
-        this.board = new cc.Sprite(res.ui.setBoard);
-        this.board.setPosition(cc.p(winsize.width / 2 + 300, winsize.height / 2));
-        this.board.setScale(0.8);
-        this.addChild(this.board, 5);
-        var actionTo = cc.MoveTo.create(1, cc.p(winsize.width / 2, winsize.height / 2)).easing(cc.easeElasticOut());
-        this.board.runAction(actionTo);
+        //音效
+        var effectLabel = new cc.LabelTTF("音效", "Arial", 30);
+        effectLabel.setPosition(cc.p(winsize.width + 100, winsize.height / 2 + 50));
+        effectLabel.runAction(cc.MoveTo.create(1, cc.p(winsize.width / 2 - 50, winsize.height / 2 + 50)).easing(cc.easeElasticOut()));
+        this.draw.addChild(effectLabel);
+        var effectIsOn = cc.sys.localStorage.getItem("effectIsOn");
+        var effectCheckBox = new ccui.CheckBox(res.off, res.on);
+        effectCheckBox.setPosition(cc.p(winsize.width + 100, winsize.height / 2 + 50));
+        effectCheckBox.runAction(cc.MoveTo.create(1, cc.p(winsize.width / 2 + 50, winsize.height / 2 + 50)).easing(cc.easeElasticOut()));
+        effectCheckBox.setSelected(effectIsOn == 1);
+        effectCheckBox.addEventListener(function (sender, type) {
+            switch (type) {
+                case ccui.CheckBox.EVENT_SELECTED:
+                    cc.sys.localStorage.setItem("effectIsOn", 1);
+                    break;
+                case ccui.CheckBox.EVENT_UNSELECTED:
+                    cc.sys.localStorage.setItem("effectIsOn", 0);
+                    break;
+                default:
+                    break;
+            }
+        }, this);
+        this.draw.addChild(effectCheckBox);
+        //音乐
+        var musicLabel = new cc.LabelTTF("音乐", "Arial", 30);
+        musicLabel.setPosition(cc.p(winsize.width + 100, winsize.height / 2 + 110));
+        musicLabel.runAction(cc.MoveTo.create(1, cc.p(winsize.width / 2 - 50, winsize.height / 2 + 110)).easing(cc.easeElasticOut()));
+        this.draw.addChild(musicLabel);
+        var musicIsOn = cc.sys.localStorage.getItem("musicIsOn");
+        var musicCheckBox = new ccui.CheckBox(res.off, res.on);
+        musicCheckBox.setPosition(cc.p(winsize.width + 100, winsize.height / 2 + 110));
+        musicCheckBox.runAction(cc.MoveTo.create(1, cc.p(winsize.width / 2 + 50, winsize.height / 2 + 110)).easing(cc.easeElasticOut()));
+        musicCheckBox.setSelected(effectIsOn == 1);
+        musicCheckBox.addEventListener(function (sender, type) {
+            switch (type) {
+                case ccui.CheckBox.EVENT_SELECTED:
+                    cc.sys.localStorage.setItem("musicIsOn", 1);
+                    break;
+                case ccui.CheckBox.EVENT_UNSELECTED:
+                    cc.sys.localStorage.setItem("musicIsOn", 0);
+                    break;
+                default:
+                    break;
+            }
+        }, this);
+        this.draw.addChild(musicCheckBox);
 
-        this.backBtn = new cc.Menu(new cc.MenuItemSprite(
-            new cc.Sprite(res.ui.backBtn),
-            new cc.Sprite(res.ui.backBtn),
-            this.backToMenu, this));
-        this.backBtn.setPosition(cc.p(winsize.width / 2 - 100, winsize.height + 160));
-        this.backBtn.attr({
-            anchorX: 0,
-            anchorY: 0,
-            x: winsize.width / 2 + 300,
-            y: winsize.height / 2 - 190
-        });
-        this.backBtn.setScale(0.8);
-        this.backBtn.runAction(cc.MoveTo.create(1, cc.p(winsize.width / 2 - 100, winsize.height / 2 - 160)).easing(cc.easeElasticOut()));
-        this.addChild(this.backBtn, 6);
-
-        //toggle
-        //effect
-        var on = new cc.MenuItemImage(res.ui.onBtn);
-        var off = new cc.MenuItemImage(res.ui.offBtn);
-        if (!canAudioPlaying) {
-            on = new cc.MenuItemImage(res.ui.onBtn);
-            off = new cc.MenuItemImage(res.ui.offBtn);
-        } else {
-            on = new cc.MenuItemImage(res.ui.offBtn);
-            off = new cc.MenuItemImage(res.ui.onBtn);
-        }
-        var toggler = new cc.MenuItemToggle(on, off,
-            function (that) {
-                // TODO: settings.
-            }, this);
-
-        this.effect = new cc.Menu(toggler);
-        this.effect.setPosition(cc.p(winsize.width + 100, winsize.height / 2 + 10));
-        this.effect.setScale(0.8);
-        this.effect.runAction(cc.MoveTo.create(1, cc.p(winsize.width / 2 - 30, winsize.height / 2 + 10)).easing(cc.easeElasticOut()));
-        this.addChild(this.effect, 6);
-
-        //audio
-        var onAudio = new cc.MenuItemImage(res.ui.onBtn);
-        var offAudio = new cc.MenuItemImage(res.ui.offBtn);
-        if (!canMusicPlaying) {
-            onAudio = new cc.MenuItemImage(res.ui.onBtn);
-            offAudio = new cc.MenuItemImage(res.ui.offBtn);
-        } else {
-            onAudio = new cc.MenuItemImage(res.ui.offBtn);
-            offAudio = new cc.MenuItemImage(res.ui.onBtn);
-        }
-        var toggler = new cc.MenuItemToggle(onAudio, offAudio,
-            function (that) {
-                // TODO settings.
-            }, this);
-
-        this.audio = new cc.Menu(toggler);
-        this.audio.setPosition(cc.p(winsize.width + 100, winsize.height / 2 - 65));
-        this.audio.setScale(0.8);
-        this.audio.runAction(cc.MoveTo.create(1, cc.p(winsize.width / 2 - 30, winsize.height / 2 - 65)).easing(cc.easeElasticOut()));
-        this.addChild(this.audio, 6);
-
-        //difficulty
-
-        var onDiff = new cc.MenuItemImage(res.ui.highBtn);
-        var offDiff = new cc.MenuItemImage(res.ui.lowBtn);
-
-        if (diffDeg == 0) {
-            onDiff = new cc.MenuItemImage(res.ui.highBtn);
-            offDiff = new cc.MenuItemImage(res.ui.lowBtn);
-        } else {
-            onDiff = new cc.MenuItemImage(res.ui.lowBtn);
-            offDiff = new cc.MenuItemImage(res.ui.highBtn);
-        }
-
-        var toggler = new cc.MenuItemToggle(onDiff, offDiff,
-            function (that) {
-                if (canAudioPlaying) {
-                    cc.audioEngine.playEffect(res.sound.button);
-                }
-                if (diffDeg == 0) {
-                    diffDeg = 1;
-                    sys.localStorage.setItem("diffDeg", 1);
-                } else {
-                    diffDeg = 0;
-                    sys.localStorage.setItem("diffDeg", 0);
-                }
-
-            }, this);
-
-        this.diff = new cc.Menu(toggler);
-        this.diff.setPosition(cc.p(winsize.width + 100, winsize.height / 2 - 140));
-        this.diff.setScale(0.8);
-        this.diff.runAction(cc.MoveTo.create(1, cc.p(winsize.width / 2 - 30, winsize.height / 2 - 140)).easing(cc.easeElasticOut()));
-        this.addChild(this.diff, 6);
+        //toggle //effect
+        // var on = new cc.MenuItemImage(res.ui.onBtn);
+        // var off = new cc.MenuItemImage(res.ui.offBtn);
+        // if (!canAudioPlaying) {
+        //     on = new cc.MenuItemImage(res.ui.onBtn);
+        //     off = new cc.MenuItemImage(res.ui.offBtn);
+        // } else {
+        //     on = new cc.MenuItemImage(res.ui.offBtn);
+        //     off = new cc.MenuItemImage(res.ui.onBtn);
+        // }
+        // var toggler = new cc.MenuItemToggle(on, off,
+        //     function (that) {
+        //         // TODO: settings.
+        //         console.log(that);
+        //     }, this);
+        // this.effect = new cc.Menu(toggler);
+        // this.effect.setPosition(cc.p(winsize.width + 100, winsize.height / 2 + 10));
+        // this.effect.setScale(0.8);
+        // this.effect.runAction(cc.MoveTo.create(1, cc.p(winsize.width / 2 - 30, winsize.height / 2 + 10)).easing(cc.easeElasticOut()));
+        // this.draw.addChild(this.effect, 6);
     },
 
     /**
