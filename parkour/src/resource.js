@@ -13,6 +13,8 @@ var res = {
     off: 'res/off.png',
     far_bg: 'res/far-bg.png',
     near_bg: 'res/near-bg.png',
+    gold_plist: 'res/gold.plist',
+    gold_png: 'res/gold.png',
     ///////////////////
 
     rank: {
@@ -35,12 +37,6 @@ var res = {
     platform: {
         plist: 'res/platform.plist',
         png: 'res/platform.png'
-    },
-
-    // gold
-    gold: {
-        plist: 'res/gold.plist',
-        png: 'res/gold.png',
     },
 
     //enemy

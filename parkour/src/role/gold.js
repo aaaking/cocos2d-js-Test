@@ -25,7 +25,7 @@ var Gold = cc.Class.extend({
 		this.y = posY;
 		
 		//cc.spriteFrameCache.addSpriteFrames(res.gold.plist);
-		this.spriteSheet = new cc.SpriteBatchNode(res.gold.png);
+		this.spriteSheet = new cc.SpriteBatchNode(res.gold_png);
 		
 		this.rotatingAction = new cc.RepeatForever(new cc.Animate(
 				new cc.Animation([0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (i) {
@@ -34,26 +34,26 @@ var Gold = cc.Class.extend({
 		));
 		this.rotatingAction.retain();
 
-		this.sprite = new cc.Sprite("#gold0.png");
+		this.sprite = new cc.PhysicsSprite("#gold0.png");
 		this.spriteSheet.addChild(this.sprite);
 		this.sprite.runAction(this.rotatingAction);
 		this.sprite.retain();
 		this.spriteSheet.retain();
 		
 		//physics
-		// var contentSize = this.sprite.getContentSize();
-		// var radius = 0.95 * this.sprite.getContentSize().width / 2;
-		// var body = new cp.Body(0.1, cp.momentForBox(Number.POSITIVE_INFINITY, contentSize.width, contentSize.height));
-		// body.applyForce(cp.v(0, 150), cp.v(0, 0));
-		// body.setPos(cc.p(posX, posY));
-		// this.body = body;
-		// this.sprite.setBody(body);
-		// body.spriteObj = this;
+		var contentSize = this.sprite.getContentSize();
+		var radius = 0.95 * this.sprite.getContentSize().width / 2;
+		var body = new cp.Body(0.1, cp.momentForBox(Number.POSITIVE_INFINITY, contentSize.width, contentSize.height));
+		body.applyForce(cp.v(0, 150), cp.v(0, 0));
+		body.setPos(cc.p(posX, posY));
+		this.body = body;
+		this.sprite.setBody(body);
+		body.spriteObj = this;
 
-		// this.shape = new cp.CircleShape(body, radius, cp.vzero);
-		// this.shape.setCollisionType(SpriteTag.gold);
-		// //Sensors only call collision callbacks, and never generate real collisions
-		// this.shape.setSensor(true);
+		this.shape = new cp.CircleShape(body, radius, cp.vzero);
+		this.shape.setCollisionType(SpriteTag.gold);
+		//Sensors only call collision callbacks, and never generate real collisions
+		this.shape.setSensor(true);
 
 	},
 
