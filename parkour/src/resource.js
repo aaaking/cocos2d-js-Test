@@ -2,6 +2,13 @@ var res = {
     logo: 'res/logo.png',
     login_board: 'res/login_board.png',
     login_done: 'res/login_done.png',
+    setting: 'res/setting.png',
+    back: 'res/back.png',
+    play: 'res/play.png',
+    icon_rank: 'res/icon_rank.png',
+    about: 'res/about.png',
+    panda_plist: 'res/panda.plist',
+    panda_png: 'res/panda.png',
     ///////////////////
     mode: {
         board: 'res/mode-board.png',
@@ -16,26 +23,13 @@ var res = {
     //////////////////
     //menu
     menu: {
-        playBtn: 'res/play-btn.png',
-        playBtnS: 'res/play-btn-s.png',
         //storeBtn: 'res/store-btn.png',
         //storeBtnS: 'res/store-btn-s.png',
-        storeBtn: 'res/rank-btn.png',
-        storeBtnS: 'res/rank-btn.png',
-        setBtn: 'res/set-btn.png',
-        setBtnS: 'res/set-btn-s.png',
         startBtn: 'res/start-btn-normal.png',
         startBtnS: 'res/start-btn-selected.png',
-        aboutBtn: 'res/about-btn.png',
-        aboutBtnS: 'res/about-btn-s.png',
         wait: 'res/wait.png',
         enable: 'res/enable.png',
         disable: 'res/disable.png'
-    },
-
-    panda : {
-        plist: 'res/panda.plist',
-        png: 'res/panda.png'
     },
 
     // Platform Related.
