@@ -57,7 +57,6 @@ var PlayScene = cc.Scene.extend(/** @lends PlayScene# */{
     _initSpace: function () {
         var space = new cp.Space();
         space.gravity = cp.v(0, -1500);
-
         // the ground.
         var wallBottom = new cp.SegmentShape(
             space.staticBody,
@@ -69,7 +68,6 @@ var PlayScene = cc.Scene.extend(/** @lends PlayScene# */{
             0);
         wallBottom.setCollisionType(SpriteTag.ground);
         space.addStaticShape(wallBottom);
-
         return space;
     },
 
@@ -183,8 +181,9 @@ var PlayScene = cc.Scene.extend(/** @lends PlayScene# */{
 
             // Update the layers.
             // Don't schedule update in layers itself in case of delay of the physics.
-            this.playLayer.update();
-
+            if (this.playLayer) {
+                this.playLayer.update();
+            }
             this.camera.update();
         }
     },
@@ -200,9 +199,6 @@ var PlayScene = cc.Scene.extend(/** @lends PlayScene# */{
         var deleteLabel = new cc.LabelTTF("游戏play界面", "", 70);
         deleteLabel.setPosition(winSize.width / 2, winSize.height / 2);
         this.addChild(deleteLabel);
-        if (deleteLabel) {
-            return;
-        }
         // the initial variables.
         var space = this.space = this._initSpace();
         var camera = this.camera = this._initCamera();
@@ -215,15 +211,19 @@ var PlayScene = cc.Scene.extend(/** @lends PlayScene# */{
         settings.videoQuality = 0;
         settings.audioEnabled = false;
 
-        this.addChild(new RepeatBackgroundLayer(camera, res.background[0], {
+        this.addChild(new RepeatBackgroundLayer(camera, res.far_bg, {
             scaleX: 2,
-            scaleY: 10
+            scaleY: 1
         }));
-        this.addChild(new RepeatBackgroundLayer(camera, res.background[1], {
+        this.addChild(new RepeatBackgroundLayer(camera, res.near_bg, {
             scaleX: 3,
-            scaleY: 10
+            scaleY: 1
         }));
 
+        if (deleteLabel) {
+            this.scheduleUpdate();
+            return;
+        }
         var playLayer = this.playLayer = new PlayLayer(camera, space, statistics, settings);
         this.addChild(playLayer);
 

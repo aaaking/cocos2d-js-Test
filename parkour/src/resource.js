@@ -11,6 +11,8 @@ var res = {
     panda_png: 'res/panda.png',
     on: 'res/on.png',
     off: 'res/off.png',
+    far_bg: 'res/far-bg.png',
+    near_bg: 'res/near-bg.png',
     ///////////////////
 
     rank: {
@@ -35,11 +37,6 @@ var res = {
         png: 'res/platform.png'
     },
 
-    // Background
-    background: [
-        'res/far-bg.png',
-        'res/near-bg.png'
-    ],
     // gold
     gold: {
         plist: 'res/gold.plist',
