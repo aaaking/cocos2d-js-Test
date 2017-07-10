@@ -31,7 +31,6 @@ var PlayLayer = cc.Layer.extend(/** @lends PlayLayer# */{
             self.setPosition(cc.p(-pos.x, -pos.y));
         });
 
-        var deleteLabel = new cc.LabelTTF("play-player", "", 70);
         var goldGenerator = new ObjectShapedGenerator(this);
 
         this.platformGenerator = new PlatformGenerator(this, true);
@@ -61,9 +60,6 @@ var PlayLayer = cc.Layer.extend(/** @lends PlayLayer# */{
         // the player is the center of the screen.
         var player = this.player = new Hero(winSize.width / 2, winSize.height / 2);
         this.addRole(player);
-        if (deleteLabel) {
-            return;
-        }
 
         // Event handling.
         var guestureRecognizer = new SimpleTouchRecognizer();
