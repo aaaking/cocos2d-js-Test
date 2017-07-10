@@ -36,11 +36,11 @@ var PlayLayer = cc.Layer.extend(/** @lends PlayLayer# */{
         deleteLabel.setColor(cc.color.RED);
         this.addChild(deleteLabel);
         var goldGenerator = new ObjectShapedGenerator(this);
+
+        this.platformGenerator = new PlatformGenerator(this, true);
         if (deleteLabel) {
             return;
         }
-
-        this.platformGenerator = new PlatformGenerator(this, true);
         this.invGenerators = [
             goldGenerator,
             // double jump shoe
@@ -107,20 +107,22 @@ var PlayLayer = cc.Layer.extend(/** @lends PlayLayer# */{
     update: function (dt) {
         var winSize = cc.director.getWinSize();
         var player = this.player;
-
-        // update the player.
-        if (player && this.player) {
-            player.update(dt);
-        }
-
         // update the genrator.
         var platform = this.platformGenerator.update(dt);
         // add gold randomly
-        if (platform && Math.random() * 2 > 1) {
+        if (this.invGenerators && platform && Math.random() * 2 > 1) {
             this.invGenerators.forEach(function (gen) {
                 gen.generate(platform);
             });
         }
+        if (!player) {
+            console.log("player==null");
+            return;
+        }
+
+        // update the player.
+        player.update(dt);
+
 
         // update the camera.
         var camera = this.camera;
@@ -159,11 +161,19 @@ var PlayLayer = cc.Layer.extend(/** @lends PlayLayer# */{
 
     getEyeX: function () {
         var winSize = cc.director.getWinSize();
-        return this.player.sprite.getPositionX() - winSize.width / 2;
+        if (this.player && this.player.sprite) {
+            return this.player.sprite.getPositionX() - winSize.width / 2;
+        } else {
+            return 0;
+        }
     },
 
     getEyeY: function () {
         var winSize = cc.director.getWinSize();
-        return this.player.sprite.getPositionY() - winSize.height / 2;
+        if (this.player && this.player.sprite) {
+            return this.player.sprite.getPositionY() - winSize.height / 2;
+        } else {
+            return 0;
+        }
     }
 });
