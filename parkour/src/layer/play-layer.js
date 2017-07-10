@@ -31,7 +31,15 @@ var PlayLayer = cc.Layer.extend(/** @lends PlayLayer# */{
             self.setPosition(cc.p(-pos.x, -pos.y));
         });
 
+        var deleteLabel = new cc.LabelTTF("play-player", "", 70);
+        deleteLabel.setPosition(winSize.width / 2, winSize.height / 2 - 300);
+        deleteLabel.setColor(cc.color.RED);
+        this.addChild(deleteLabel);
         var goldGenerator = new ObjectShapedGenerator(this);
+        if (deleteLabel) {
+            return;
+        }
+
         this.platformGenerator = new PlatformGenerator(this, true);
         this.invGenerators = [
             goldGenerator,
@@ -101,7 +109,9 @@ var PlayLayer = cc.Layer.extend(/** @lends PlayLayer# */{
         var player = this.player;
 
         // update the player.
-        player.update(dt);
+        if (player && this.player) {
+            player.update(dt);
+        }
 
         // update the genrator.
         var platform = this.platformGenerator.update(dt);

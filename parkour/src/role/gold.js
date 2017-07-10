@@ -34,26 +34,26 @@ var Gold = cc.Class.extend({
 		));
 		this.rotatingAction.retain();
 
-		this.sprite = new cc.PhysicsSprite("#gold0.png");
+		this.sprite = new cc.Sprite("#gold0.png");
 		this.spriteSheet.addChild(this.sprite);
 		this.sprite.runAction(this.rotatingAction);
 		this.sprite.retain();
 		this.spriteSheet.retain();
 		
 		//physics
-		var contentSize = this.sprite.getContentSize();
-		var radius = 0.95 * this.sprite.getContentSize().width / 2;
-		var body = new cp.Body(0.1, cp.momentForBox(Number.POSITIVE_INFINITY, contentSize.width, contentSize.height));
-		body.applyForce(cp.v(0, 150), cp.v(0, 0));
-		body.setPos(cc.p(posX, posY));
-		this.body = body;
-		this.sprite.setBody(body);
-		body.spriteObj = this;
+		// var contentSize = this.sprite.getContentSize();
+		// var radius = 0.95 * this.sprite.getContentSize().width / 2;
+		// var body = new cp.Body(0.1, cp.momentForBox(Number.POSITIVE_INFINITY, contentSize.width, contentSize.height));
+		// body.applyForce(cp.v(0, 150), cp.v(0, 0));
+		// body.setPos(cc.p(posX, posY));
+		// this.body = body;
+		// this.sprite.setBody(body);
+		// body.spriteObj = this;
 
-		this.shape = new cp.CircleShape(body, radius, cp.vzero);
-		this.shape.setCollisionType(SpriteTag.gold);
-		//Sensors only call collision callbacks, and never generate real collisions
-		this.shape.setSensor(true);
+		// this.shape = new cp.CircleShape(body, radius, cp.vzero);
+		// this.shape.setCollisionType(SpriteTag.gold);
+		// //Sensors only call collision callbacks, and never generate real collisions
+		// this.shape.setSensor(true);
 
 	},
 
@@ -65,8 +65,8 @@ var Gold = cc.Class.extend({
 		this.layer = layer;
 		layer.addChild(this.spriteSheet, 10);
 
-		this.space = space;
-		space.addShape(this.shape);
+		// this.space = space;
+		// space.addShape(this.shape);
 	},
 	
 	initPos: function (pos) {
