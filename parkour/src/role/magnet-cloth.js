@@ -37,7 +37,7 @@ var MagnetCloth = cc.Class.extend({
         this.golds = golds;
         this.statistics = statistics;
 
-        this.spriteSheet = new cc.SpriteBatchNode(res.magnet.png);
+        this.spriteSheet = new cc.SpriteBatchNode(res.magnet_png);
 
         this.rotatingAction = new cc.RepeatForever(new cc.Animate(
             new cc.Animation([0, 1, 2, 3, 4].map(function (i) {
@@ -46,8 +46,7 @@ var MagnetCloth = cc.Class.extend({
         ));
         this.rotatingAction.retain();
 
-        // this.sprite = new cc.PhysicsSprite("#magnet_01.png");
-        this.sprite = new cc.Sprite("#magnet_01.png");
+        this.sprite = new cc.PhysicsSprite("#magnet_01.png");
         this.sprite.setScale(0.4);
         this.spriteSheet.addChild(this.sprite);
         this.sprite.runAction(this.rotatingAction);
@@ -55,19 +54,19 @@ var MagnetCloth = cc.Class.extend({
         this.spriteSheet.retain();
 
         //physics
-        // var contentSize = this.sprite.getContentSize();
-        // var radius = 0.95 * this.sprite.getContentSize().width / 4;
-        // var body = new cp.Body(0.1, cp.momentForBox(Number.POSITIVE_INFINITY, contentSize.width, contentSize.height));
-        // body.applyForce(cp.v(0, 150), cp.v(0, 0));
-        // body.setPos(cc.p(posX, posY));
-        // body.spriteObj = this;
-        // this.sprite.setBody(body);
-        // this.body = body;
-        //
-        // this.shape = new cp.CircleShape(body, radius, cp.vzero);
-        // this.shape.setCollisionType(SpriteTag.inventory);
-        // //Sensors only call collision callbacks, and never generate real collisions
-        // this.shape.setSensor(true);
+        var contentSize = this.sprite.getContentSize();
+        var radius = 0.95 * this.sprite.getContentSize().width / 4;
+        var body = new cp.Body(0.1, cp.momentForBox(Number.POSITIVE_INFINITY, contentSize.width, contentSize.height));
+        body.applyForce(cp.v(0, 150), cp.v(0, 0));
+        body.setPos(cc.p(posX, posY));
+        body.spriteObj = this;
+        this.sprite.setBody(body);
+        this.body = body;
+
+        this.shape = new cp.CircleShape(body, radius, cp.vzero);
+        this.shape.setCollisionType(SpriteTag.inventory);
+        //Sensors only call collision callbacks, and never generate real collisions
+        this.shape.setSensor(true);
     },
 
     /**

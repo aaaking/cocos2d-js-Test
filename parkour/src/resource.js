@@ -17,6 +17,9 @@ var res = {
     gold_png: 'res/gold.png',
     shoes_png: 'res/shoes.png',
     shoes_plist: 'res/shoes.plist',
+    magnet_png: 'res/magnet.png',
+    magnet_plist: 'res/magnet.plist',
+    magnet_effect: 'res/magnetEffect.png',
     ///////////////////
 
     rank: {
@@ -51,13 +54,6 @@ var res = {
     bird : {
         png: 'res/bird.png',
         plist: 'res/bird.plist'
-    },
-
-    //magnet
-    magnet: {
-        png: 'res/magnet.png',
-        plist: 'res/magnet.plist',
-        effect: 'res/magnetEffect.png'
     },
 
     //spring
