@@ -282,47 +282,29 @@ var WelcomeLayer = cc.Layer.extend({
         var winsize = cc.director.getWinSize();
         this.draw = new cc.DrawNode();
         this.draw.drawRect(cc.p(0, winsize.height), cc.p(winsize.width, 0), cc.color(0, 0, 0, 80), 0, cc.color(0, 0, 0, 80));
+        // this.draw = new cc.LayerColor(cc.color(0, 0, 0, 80), winsize.width, winsize.height);
         this.addChild(this.draw, 4, 1);
 
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
+            target: this.draw,
             swallowTouches: true,
             onTouchBegan: function () {
                 return true;
             },
+            onTouchEnded: function (touch, event) {
+                var target = this.target;
+                target.removeFromParent();
+            }
         }, this.draw);
 
-        this.board = new cc.Sprite(res.ui.aboutBoard);
-        this.board.setPosition(cc.p(winsize.width / 2 + 300, winsize.height / 2));
-        this.board.setScale(0.8);
-        this.addChild(this.board, 5);
         var actionTo = cc.MoveTo.create(1, cc.p(winsize.width / 2, winsize.height / 2)).easing(cc.easeElasticOut());
-        this.board.runAction(actionTo);
-//		var sequence = cc.Sequence.create(
-//		actionTo,
-//		cc.CallFunc.create(function (logo) {
-//		var shaking = cc.MoveTo.create(1, cc.p(250, winsize.height-250)).easing(cc.easeElasticIn());
-//		var shakingBack = cc.MoveTo.create(1, cc.p(250, winsize.height-140)).easing(cc.easeElasticOut());
-//		var shakingSeq = cc.Sequence.create(shaking, shakingBack);
-//		var shakingSeq = cc.Sequence.create(shaking,shakingBack);
-//		logo.runAction(shakingSeq.repeatForever());
-//		}, this.logo));
-//		this.logo.runAction(sequence);
-
-        this.backBtn = new cc.Menu(new cc.MenuItemSprite(
-            new cc.Sprite(res.ui.backBtn),
-            new cc.Sprite(res.ui.backBtn),
-            this.backToMenu, this));
-        this.backBtn.setPosition(cc.p(winsize.width + 100, 60));
-        this.backBtn.attr({
-            anchorX: 0,
-            anchorY: 0,
-            x: winsize.width / 2 + 300,
-            y: winsize.height / 2 - 190
-        });
-        this.backBtn.setScale(0.8);
-        this.backBtn.runAction(cc.MoveTo.create(1, cc.p(winsize.width / 2 - 100, winsize.height / 2 - 190)).easing(cc.easeElasticOut()));
-        this.addChild(this.backBtn, 6);
+        var deleteLabel = new cc.LabelTTF("只是用来熟悉\ncocos2d-js\n2017/07/10", "Arial", 35);
+        deleteLabel.setPosition(winsize.width + deleteLabel.width / 2, winsize.height / 2);
+        deleteLabel.setFontFillColor(cc.color.GREEN);
+        deleteLabel.setTag(1);
+        deleteLabel.runAction(actionTo);
+        this.draw.addChild(deleteLabel);
     },
 
     /**

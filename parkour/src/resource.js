@@ -129,8 +129,6 @@ var res = {
         soundOn: 'res/ui/soundOnBtn.png',
         soundOff: 'res/ui/soundOffBtn.png',
         distance: 'res/ui/distance.png',
-        aboutBoard: 'res/ui/about-board.png',
-        backBtn: 'res/ui/back-btn.png',
         setBoard: 'res/ui/set-board.png',
         onBtn: 'res/ui/on-btn.png',
         offBtn: 'res/ui/off-btn.png',
