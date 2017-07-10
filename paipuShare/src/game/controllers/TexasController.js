@@ -141,24 +141,29 @@ var TexasController = cc.Layer.extend({
                 cc.p(display.cx + SEAT_PADDING, SEAT_BOTTOM),
             ]
         ];
-        cc.loader.loadTxt("res/a.txt", function (err, data) {
-            if (err) {
-                // return console.log("load failed");
-            }
-            else {
-                var reader = new FileReader();
-            }
-
-        });
+        // cc.loader.loadTxt("res/a.txt", function (err, data) {
+        //     if (err) {
+        //         return console.log("load failed");
+        //     }
+        //     else {
+        //         var reader = new FileReader();
+        //         console.log("load success" + reader);
+        //         reader.onload = function (e) {
+        //             var text = reader.result;
+        //             console.log("load success and text: " + text);
+        //         }
+        //     }
+        // });
         this.maxSeatsCnt = 9;
-        this.seatsLayout = seatsLayout[this.maxSeatsCnt - 1]
-        // var reader = new FileReader();
+        this.seatsLayout = seatsLayout[this.maxSeatsCnt - 1];
         //
+        // var reader = new FileReader();
         // reader.onload = function(e) {
         // 	var text = reader.result;
-        // }
+        // 	console.log("load text: " + text);
+        // };
+        // reader.readAsText("res/a.txt");//TexasSheet-1462438272-3528213803606-100007-208
         //
-        // reader.readAsText("res/TexasSheet-1462438272-3528213803606-100007-208");
         this.initUI(param);
     },
 
@@ -184,8 +189,6 @@ var TexasController = cc.Layer.extend({
     onEnter: function () {
         this._super();
         // console.log("EventManager.init");
-        //
-        //
         EventManager.addEventListener("user.SheetInfo", this.onSheetInfo.bind(this));
         EventManager.addEventListener("user.GameStartNtf", this.onGameStart.bind(this));
         EventManager.addEventListener("user.AddCardNtf", this.onAddCardNtf.bind(this));
@@ -203,8 +206,6 @@ var TexasController = cc.Layer.extend({
         EventManager.addEventListener("user.PayInsuranceNtf", this.onPayInsuranceNtf.bind(this));
         EventManager.addEventListener("user.InitiativeShowCardsNtf", this.onInitiativeShowCardsNtf.bind(this));
         EventManager.addEventListener("user.updateTable", this.updateTable.bind(this));
-
-
     },
     onTick: function (t) {
     },
