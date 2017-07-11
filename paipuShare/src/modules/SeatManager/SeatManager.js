@@ -573,7 +573,6 @@ var SeatManager = cc.Node.extend({
 		}
 	},
 	premiumMoveAnim : function(pos, callback){
-
 		if (this.player && this.player.uiBet && this.player.uiBet > 0){
 			this.player.setBetView(SeatManager.COIN_NAME, 0, this.betPos());
 
@@ -585,11 +584,7 @@ var SeatManager = cc.Node.extend({
 			}
 		}
 	}
-
-
 });
-
-
 
 SeatManager.EMOTICON_IDLE = 2
 SeatManager.ALIGN_LEFT = 3
@@ -609,149 +604,4 @@ SeatManager.SB_CHIP_NAME = "res/chip_sb.png"
 SeatManager.BB_CHIP_NAME = "res/chip_bb.png"
 SeatManager.COIN_NAME = "res/coin.png"
 
-
-// SeatManager.prototype.ctor = function(seatid){
-// 	this.seatid = seatid;
-// 	this.updatePosition(seatid);
-// 	this.seat =new SeatView(seatid);
-// 	this.addChild(this.seatid);
-// 	this.emoticon_state = SeatManager.EMOTICON_IDLE;
-// };
-
-
-
-
-
-
-
-
-// function SeatManager:showCoinView()
-// if not this.player then
-// return
-// end
-//
-// this.player:setCoinView(this.playerInfo.coins)
-// end
-//
-
-
-
-
-
-
-// function SeatManager:setPlayerWaiting()
-// if not this.player then return end
-//
-// this.player:setGoldView("等待")
-// end
-//
-
-
-
-
-// function SeatManager:showAddTimeBubble()
-// if not this.player then
-// return
-// end
-//
-// var signal = this.align - 2
-// var x = signal*BUBBLE_ADD_TIME_X
-//
-// this.player:showBubble(SeatManager.BUBBLE_ADD_TIME, x, BUBBLE_ADD_TIME_Y, this.align)
-// end
-//
-// function SeatManager:showEmoticon( n )
-// if this.player then
-// this.player:showEmoticon(n)
-// else
-// HTTP_ERROR("[SeatManager ERROR][%d] no player", this.position)
-// end
-// end
-//
-// function SeatManager:showAudioPlayView(duration, silence)
-// if this.player then
-// this.player:showAudioPlayView(duration, silence)
-// else
-// HTTP_ERROR("play audio begin pos = %d has no player", this.position)
-// end
-// end
-//
-// function SeatManager:hideAudioPlayView()
-// if this.player then
-// this.player:hideAudioPlayView()
-// else
-// HTTP_ERROR("play audio end pos = %d has no player", this.position)
-// end
-// end
-//
-// function SeatManager:removeAllShowFlag()
-// for i=1,2 do
-// 	this.removeShowFlag(i)
-// 	end
-// end
-//
-// function SeatManager:removeShowFlag( i )
-// printInfo("removeAllShowFlag111 i %d", i)
-// if this.playerInfo and this.playerInfo.uid == app.userInfo.uid then
-// printInfo("removeAllShowFlag 222i %d", i)
-// this.player:removeShowFlag(i)
-// end
-// end
-//
-// function SeatManager:onShowCardsListener(listener)
-// this.showCardsListener = listener
-//
-// if this.player and this.playerInfo.uid == user.uid then
-// this.player:onShowCardListener(listener)
-// end
-//
-// return self
-// end
-//
-// function SeatManager:enableHandCardTouch(enable, card)
-// if not this.playerInfo or this.playerInfo.uid ~= app.userInfo.uid or not this.player then
-// return
-// end
-//
-// var cardViews = this.player.handCardsView:getCardViews()
-// if cardViews then
-// for k,v in pairs(cardViews) do
-// 	if v.card == card then
-// 	v:enableTouch(enable)
-// end
-// end
-// end
-// end
-//
-// function SeatManager:reShowCards( cards, callback )
-// if this.playerInfo and
-// this.playerInfo.uid == app.userInfo.uid and
-// this.player and
-// this.player.handCardsView then
-//
-// var cardViews = this.player.handCardsView:getCardViews()
-//
-// if cardViews then
-// var hasCalled
-//
-// for k,v in pairs(cards) do
-// 	var cardView = cardViews[v.card_order]
-// if cardView.card == v.card_num then
-// cardView:cover()
-//
-// var callF
-// if not hasCalled then
-// callF = cca.callFunc(callback)
-// hasCalled = true
-// end
-//
-// cardView:runAction(cca.seq({cardView:flipAction(), callF}))
-// else
-// printInfo("card view  card = %d, cards card = %d order= %d",
-// 	cardView.card, v.card_num, v.card_order)
-// end
-// end
-// end
-// end
-// end
 
