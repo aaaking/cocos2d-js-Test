@@ -126,9 +126,9 @@ var SeatManager = cc.Node.extend({
 		}
 
 		if (dzglobal.checkSeatid(user.seatid)) {
-			this.seat.changeToEmptySeat();
+			this.seat.changeToEmpty();
 		} else {
-			this.seat.changeToSitdown();
+			this.seat.changeToSitdownMale();
 		}
 		this.seat.view.setPosition(pos);
 		this.seat.view.runAction(cc.moveTo(0.5, cc.p(0, 0)));

@@ -93,9 +93,9 @@ var HelloWorldScene = cc.Scene.extend({
         var Control = new TexasController();
         this.addChild(Control);
 
-        // this.playsheet = new SheetPlayerView();
-        // this.playsheet.init();
-        // this.addChild(this.playsheet);
+        this.playsheet = new SheetPlayerView();
+        this.playsheet.init();
+        this.addChild(this.playsheet);
         // this.layer = new cc.LayerColor(cc.color(255, 255, 255, 188));
         // this.addChild(this.layer);
         //runWebSocketTest();
