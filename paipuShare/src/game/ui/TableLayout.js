@@ -18,7 +18,7 @@ var seatsLayout = [
     cc.p(display.cx + 210, SEAT_BOTTOM + SEAT_HEIGHT_PAD * 2 + 195),
     cc.p(display.cx + SEAT_PADDING, SEAT_BOTTOM + SEAT_HEIGHT_PAD * 2),
     cc.p(display.cx + SEAT_PADDING, SEAT_BOTTOM + SEAT_HEIGHT_PAD),
-    cc.p(display.cx + SEAT_PADDING, SEAT_BOTTOM)]
+    cc.p(display.cx + SEAT_PADDING, SEAT_BOTTOM)];
 
 var betLayout = [
     cc.p(100, 185),
@@ -29,7 +29,7 @@ var betLayout = [
     cc.p(-70, -50),
     cc.p(-80, 0),
     cc.p(-80, 0),
-    cc.p(-80, 0)]
+    cc.p(-80, 0)];
 
 
 var handCardsLayout = [
@@ -41,7 +41,7 @@ var handCardsLayout = [
     cc.p(-23, -23),
     cc.p(-23, -23),
     cc.p(-23, -23),
-    cc.p(-23, -23)]
+    cc.p(-23, -23)];
 
 var bubbleLayout = [
     cc.p(50, 110),
