@@ -39,7 +39,7 @@ var SeatManager = cc.Node.extend({
 		POOL_CARDS_POS = cc.p(display.cx, 585);
 		this.seatid = seatid;
 		this.updatePosition(seatid);
-		this.seat =new SeatView(seatid);
+		this.seat = new SeatView(seatid);
 		this.addChild(this.seat);
 		// this.emoticon_state = SeatManager.EMOTICON_IDLE;
 	},
