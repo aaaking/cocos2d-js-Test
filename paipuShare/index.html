@@ -38,7 +38,7 @@
         var nav = window.navigator;
         var ua = nav.userAgent.toLowerCase();
         var uaResult = /android (\d+(?:\.\d+)+)/i.exec(ua) || /android (\d+(?:\.\d+)+)/i.exec(nav.platform);
-        if (true) {
+        if (uaResult) {
             var osVersion = parseInt(uaResult[1]) || 0;
             var browserCheck = ua.match(/(qzone|micromessenger|qqbrowser)/i);
             if (browserCheck) {
