@@ -13,6 +13,8 @@ var SheetPlayerView = cc.Node.extend({
         this.playSheet = new PlaySheet();
         this.addChild(this.playSheet);
         this.playSheet.onUpdateCallBack(this.update.bind(this));
+        this.layer = new cc.LayerColor(cc.color(255, 255, 255, 255));
+        this.addChild(this.layer);
         // this.msgID = 6;
         // this.nextButton =  new ccui.Button("res/sheet_start_button_1.png", "res/sheet_start_button_2.png");
         // this.addChild(this.nextButton);
