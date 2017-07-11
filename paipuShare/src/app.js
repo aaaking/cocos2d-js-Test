@@ -86,8 +86,6 @@ var HelloWorldScene = cc.Scene.extend({
         display.bottom = 0;
         display.widthInPixels = display.sizeInPixels.width;
         display.heightInPixels = display.sizeInPixels.height;
-        // var layer = new HelloWorldLayer();
-        // this.addChild(layer);
         //app.userInfo.uid = window.texas.uid
         app.userInfo.uid = 1001;
         var Control = new TexasController();
