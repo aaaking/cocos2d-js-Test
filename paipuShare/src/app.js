@@ -92,7 +92,6 @@ var HelloWorldScene = cc.Scene.extend({
         this.addChild(Control);
 
         this.playsheet = new SheetPlayerView();
-        this.playsheet.init();
         this.addChild(this.playsheet);
         //runWebSocketTest();
         // cc.sys.openApp("http://www.baidu.com");

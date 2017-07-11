@@ -30,12 +30,20 @@ var SheetPlayerView = cc.Node.extend({
             swallowTouches: true,
             onTouchBegan: this.TouchBegan.bind(this),
             onTouchEnded: this.TouchEnd.bind(this)
-        }, this.layer)
+        }, this.layer);
 
         this.view = new cc.Node();
         this.addChild(this.view);
         this.view.showing = true;
         this.playing_ = false;
+        //下面的代码拷贝自init函数(这个函数被我删除)
+        this.hideAllBtns();
+        this.playSheet.init();
+        this.totalTime = this.playSheet.getTotalTime();
+        this.showPlayBtn();
+        this.updateView();
+        this.showTimerLine();
+        // this.playSheet.play();
     },
     TouchBegan: function (touch, event) {
         this.beganX = touch.x;
@@ -57,17 +65,6 @@ var SheetPlayerView = cc.Node.extend({
     },
     openFile: function (path) {
         this.playSheet.openFile(path);
-    },
-    init: function () {
-        this.hideAllBtns();
-        this.playSheet.init();
-        this.totalTime = this.playSheet.getTotalTime();
-
-        this.showPlayBtn();
-        this.playing_ = false;
-        this.updateView();
-        this.showTimerLine();
-        // this.playSheet.play();
     },
     show: function () {
         this.view.setVisible(true);
