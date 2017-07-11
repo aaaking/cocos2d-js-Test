@@ -34,16 +34,8 @@ var SheetPlayerView = cc.Node.extend({
 
         this.view = new cc.Node();
         this.addChild(this.view);
-
         this.view.showing = true;
-
         this.playing_ = false;
-
-        // this.timer = new SheetTimerLine();
-        // this.timer.setPosition(display.cx, display.cy - 380);
-        // this.view.addChild(this.timer);
-        // this.showTimerLine();
-        // this.state = SheetPlayerView.STATUS_READY
     },
     TouchBegan: function (touch, event) {
         this.beganX = touch.x;
