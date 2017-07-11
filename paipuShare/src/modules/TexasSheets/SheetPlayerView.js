@@ -35,11 +35,6 @@ var SheetPlayerView = cc.Node.extend({
         this.view = new cc.Node();
         this.addChild(this.view);
 
-        // this.viewBg = new cc.Sprite.create("res/bg_0.png");
-        // this.viewBg.setPosition(BUTTON_POS_X, BUTTON_POS_Y);
-        // this.viewBg.setOpacity(0);
-        // this.view.addChild(this.viewBg);
-
         this.view.showing = true;
 
         this.playing_ = false;
@@ -124,7 +119,6 @@ var SheetPlayerView = cc.Node.extend({
             this.addButtonToTimerLine();
 
         }
-
         this.updateTimerLine();
     },
     updateTimerLine: function () {
