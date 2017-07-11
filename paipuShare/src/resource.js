@@ -8,7 +8,6 @@ var res = {
     goldView:"res/gold.png",
     button:"res/button.png",
     avatar_mask:"res/avatar_mask.png",
-    avatar_female:"res/avatar_female.png",
     cardpng:"res/card.png",
     cardplist:"res/card.plist",
     //allinpng:"res/allin.png",

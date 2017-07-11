@@ -6,7 +6,7 @@ var SeatView = cc.Node.extend({
         var texture = cc.textureCache.addImage("res/avatar_male.png");
         this.textures[SIT_MALE] = texture;
 
-        var texture = cc.textureCache.addImage("res/avatar_female.png");
+        var texture = cc.textureCache.addImage("res/avatar_male.png");
         this.textures[SIT_FEMALE] = texture;
 
         texture = cc.textureCache.addImage("res/seat_empty.png");
