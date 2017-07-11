@@ -1,12 +1,14 @@
-
-
 var SeatView = cc.Node.extend({
-    ctor:function(seatid) {
+    ctor: function (seatid) {
         this._super();
         this.seatid = seatid;
         this.textures = {};
-        var texture = cc.textureCache.addImage("res/sitdown.png");
-        this.textures[SIT_DOWM] = texture;
+        var texture = cc.textureCache.addImage("res/avatar_male.png");
+        this.textures[SIT_MALE] = texture;
+
+        var texture = cc.textureCache.addImage("res/avatar_female.png");
+        this.textures[SIT_FEMALE] = texture;
+
         texture = cc.textureCache.addImage("res/seat_empty.png");
         this.textures[EMPTY] = texture;
 
@@ -16,19 +18,24 @@ var SeatView = cc.Node.extend({
     }
 });
 
-var SIT_DOWM = 1
-var EMPTY = 2
+var SIT_MALE = 1;
+var SIT_FEMALE = 2;
+var EMPTY = 3;
 
- SeatView.prototype.changeToSitdown=function () {
-     this.view.setTexture(this.textures[SIT_DOWM]);
-     this.touchable = true;
- };
+SeatView.prototype.changeToSitdownMale = function () {
+    this.view.setTexture(this.textures[SIT_MALE]);
+    this.touchable = true;
+};
 
+SeatView.prototype.changeToSitdownFemale = function () {
+    this.view.setTexture(this.textures[SIT_FEMALE]);
+    this.touchable = true;
+};
 
- SeatView.prototype.changeToEmptySeat = function () {
-     this.view.setTexture(this.textures[EMPTY]);
-     this.touchable = false;
- };
+SeatView.prototype.changeToEmpty = function () {
+    this.view.setTexture(this.textures[EMPTY]);
+    this.touchable = false;
+};
 
 
 
