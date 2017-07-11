@@ -96,10 +96,9 @@ var HelloWorldScene = cc.Scene.extend({
         this.playsheet = new SheetPlayerView();
         this.playsheet.init();
         this.addChild(this.playsheet);
-        // this.layer = new cc.LayerColor(cc.color(255, 255, 255, 188));
-        // this.addChild(this.layer);
         //runWebSocketTest();
         // cc.sys.openApp("http://www.baidu.com");
+        // cc.sys.openURL("http://www.baidu.com");
     },
     onTick: function (t) {
         console.log("asdasdasd=" + t);
