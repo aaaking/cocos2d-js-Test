@@ -193,7 +193,6 @@ var SeatManager = cc.Node.extend({
 		//} else {
 		//	this.align = SeatManager.ALIGN_LEFT;
 		//}
-
 		if (this.player) {
 			this.player.updatePosition(position);
 			this.setDealCardsPos(POOL_CARDS_POS);

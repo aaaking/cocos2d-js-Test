@@ -884,7 +884,6 @@
           {
             "FileData": {
               "Type": "Normal",
-              "Path": "01.png",
               "Plist": ""
             },
             "BlendFunc": {
@@ -1165,7 +1164,6 @@
         "ctype": "SingleNodeObjectData"
       },
       "UsedResources": [
-        "01.png",
         "011.png",
         "02.png",
         "03.png",
