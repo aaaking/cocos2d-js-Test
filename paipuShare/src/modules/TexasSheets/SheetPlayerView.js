@@ -52,7 +52,6 @@ var SheetPlayerView = cc.Node.extend({
     TouchEnd: function (touch, event) {
         if (this.playing_) {
             this.stopAllActions();
-
             if (this.view.showing) {
                 this.hide();
             } else {
