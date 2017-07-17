@@ -152,7 +152,6 @@ var SheetPlayerView = cc.Node.extend({
         var length = this.timerLine.getTimerLineLength();
         var posX = pos.x - this.thumbBeganX + this.thumbBeganPosX;
         var percentage = posX / length;
-
         var time = this.totalTime * percentage;
         this.playSheet.stopAndGoToTime(time);
         this.restart();
